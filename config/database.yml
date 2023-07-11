@@ -84,6 +84,7 @@ test:
 #
 production:
   <<: *default
-  database: ror_template_production
-  username: ror_template
+  host: dpg-cimb15dgkuvgvheok5s0-a.oregon-postgres.render.com
+  database: pressingly_test_site
+  username: pressingly
   password: <%= ENV["ROR_TEMPLATE_DATABASE_PASSWORD"] %>
