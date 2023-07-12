@@ -291,7 +291,7 @@ Devise.setup do |config|
       redirect_uri: ENV["PRESSINGLY_REDIRECT_URL"],
       # https://github.com/omniauth/omniauth-oauth2/issues/58
       # https://stackoverflow.com/questions/42240872/csrf-detection-fix-provider-ignores-state-true-not-saving-session-after-success
-      provider_ignores_state: true,
+      # provider_ignores_state: true,
       authorization_endpoint: "https://pressingly-account.onrender.com/oauth/authorize",
       token_endpoint: "https://pressingly-account.onrender.com/oauth/token",
       userinfo_endpoint: "https://pressingly-account.onrender.com/oauth/userinfo",

@@ -1,8 +1,62 @@
+<!-- inline button style -->
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
 
-<p>
-  Loged in with: <%= current_user&.email%>
-  <%= button_to "sign out", destroy_user_session_path, data: {turbo: "false"}, method: :delete %>
-</p>
+  *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+  }
 
+  button{
+    padding: 10px 12px;
+    background-color: #0076ff;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    letter-spacing: 4px;
+    overflow: hidden;
+    transition: 0.5s;
+    cursor: pointer;
+  }
+
+  button:hover{
+      background: #0076ff;
+      color: #fff;
+      box-shadow: 0 0 5px #03e9f4,
+                  0 0 25px #03e9f4,
+                  0 0 50px #03e9f4,
+                  0 0 200px #03e9f4;
+      -webkit-box-reflect:below 1px linear-gradient(transparent, #0005);
+  }
+</style>
+<!-- act like top nav -->
+<div>
+  <div style="padding-bottom: 10px;
+    padding-top: 10px;
+    text-align: right;
+    padding-right: 5px;">
+    <span style="width: 50%" >
+    <%if current_user%>
+      <p> Loged in with: <%= current_user&.email%>
+        <%= button_to "sign out", destroy_user_session_path, data: {turbo: "false"}, method: :delete %>
+      </p>
+    <% else %>
+      <%= button_to "Sign in with Pressingly", user_openid_connect_omniauth_authorize_path, data: {turbo: "false"} %>
+    <% end %>
+    <span>
+  </div>
+<div>
 <%# https://dev.to/rbazinet/hotwire-fix-for-cors-error-when-using-omniauth-3k36 %>
-<%= button_to "Sign in with Pressingly", user_openid_connect_omniauth_authorize_path, data: {turbo: "false"} %>
+
+<div style="width: 100%; height: 2000px">
+  <iframe
+    class="demo-preview-iframe"
+    src="<%= ENV["DEMO_IFRAME"] %>"
+    scrolling="yes"
+    width="100%"
+    height="100%"
+    webkitAllowFullScreen mozallowfullscreen allowFullScreen>
+  </iframe>
+</div>
