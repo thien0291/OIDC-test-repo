@@ -84,7 +84,7 @@ test:
 #
 production:
   <<: *default
-  host: dpg-cimb15dgkuvgvheok5s0-a.oregon-postgres.render.com
-  database: pressingly_test_site
-  username: pressingly
+  host: <%= ENV["ROR_TEMPLATE_DATABASE_HOST"] %>
+  database: <%= ENV["ROR_TEMPLATE_DATABASE_NAME"] %>
+  username: <%= ENV["ROR_TEMPLATE_DATABASE_USER"] %>
   password: <%= ENV["ROR_TEMPLATE_DATABASE_PASSWORD"] %>
