@@ -273,8 +273,12 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   config.omniauth :openid_connect, {
-    name: :pressingly,
+    name: :openid_connect, #must be openid_connect
     issuer: "pressingly",
+    send_nonce: false, # https://devforum.okta.com/t/authorization-code-flow-is-the-nonce-parameter-necessary/12150
+    nonce: false,
+    # Should state param be verified - this is recommended, not required by the OIDC specification
+    require_state: false,
     scope: [:openid, :email],
     response_type: :code,
     uid_field: "sub",
