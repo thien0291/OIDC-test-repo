@@ -7,7 +7,6 @@ class User < ApplicationRecord
   devise :omniauthable, omniauth_providers: [:openid_connect]
 
   def self.from_omniauth(auth)
-    byebug
     # find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|
     find_or_create_by(email: auth.info.email) do |user|
       user.email = auth.info.email
