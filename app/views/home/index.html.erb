@@ -61,7 +61,8 @@ function getCredentialsFromPressingly() {
     if (xhr.readyState === 4 && xhr.status === 200) {
       var response = JSON.parse(xhr.responseText);
       // Process the response data here
-      if(response.email !== "") {
+      console.log(response)
+      if(response.email !== null) {
         document.querySelector("[data-pressingly-one-tap]").innerText = "Sign in with " + response.email + " (Pressingly)";
       }
     }
