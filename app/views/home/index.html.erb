@@ -15,7 +15,7 @@
     font-weight: bold;
     border: none;
     border-radius: 5px;
-    letter-spacing: 4px;
+
     overflow: hidden;
     transition: 0.5s;
     cursor: pointer;
@@ -43,12 +43,38 @@
         <%= button_to "sign out", destroy_user_session_path, data: {turbo: "false"}, method: :delete %>
       </p>
     <% else %>
-      <%= button_to "Sign in with Pressingly", user_openid_connect_omniauth_authorize_path, data: {turbo: "false"} %>
+      <%= button_to "Sign in with Pressingly", user_openid_connect_omniauth_authorize_path, data: {turbo: "false", pressingly_one_tap: "true"} %>
     <% end %>
     <span>
   </div>
 <div>
 <%# https://dev.to/rbazinet/hotwire-fix-for-cors-error-when-using-omniauth-3k36 %>
+
+
+
+<script>
+function getCredentialsFromPressingly() {
+  var xhr = new XMLHttpRequest();
+  xhr.withCredentials = true;
+
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      var response = JSON.parse(xhr.responseText);
+      // Process the response data here
+      if(response.email !== "") {
+        document.querySelector("[data-pressingly-one-tap]").innerText = "Sign in with " + response.email + " (Pressingly)";
+      }
+    }
+  };
+
+  xhr.open("GET", "https://pressingly-account.onrender.com/one-tap/info", true);
+  xhr.send();
+}
+
+// Call the function to make the AJAX request
+getCredentialsFromPressingly();
+</script>
+
 
 <div style="width: 100%; height: 2000px">
   <iframe
