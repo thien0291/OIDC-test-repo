@@ -39,7 +39,7 @@
     padding-right: 5px;">
     <span style="width: 50%" >
     <%if current_user%>
-      <p> Loged in with: <%= current_user&.email%>
+      <p> Logged in with: <%= current_user&.email%>
         <%= button_to "sign out", destroy_user_session_path, data: {turbo: "false"}, method: :delete %>
       </p>
     <% else %>
