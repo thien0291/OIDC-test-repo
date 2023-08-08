@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  provider: MyString
+  token: MyString
+  threshold: 9.99
+  expired_at: 2023-08-02 22:12:19
+  cancelled_at: 2023-08-02 22:12:19
+  hourly_threshold: 9.99
+  daily_threshold: 9.99
+  weekly_threshold: 9.99
+  monthly_threshold: 9.99
+  transaction_threshold: 9.99
+
+two:
+  user: two
+  provider: MyString
+  token: MyString
+  threshold: 9.99
+  expired_at: 2023-08-02 22:12:19
+  cancelled_at: 2023-08-02 22:12:19
+  hourly_threshold: 9.99
+  daily_threshold: 9.99
+  weekly_threshold: 9.99
+  monthly_threshold: 9.99
+  transaction_threshold: 9.99

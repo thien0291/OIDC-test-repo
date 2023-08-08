@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @credit_token %>
+
+<div>
+  <%= link_to "Edit this credit token", edit_credit_token_path(@credit_token) %> |
+  <%= link_to "Back to credit tokens", credit_tokens_path %>
+
+  <%= button_to "Destroy this credit token", @credit_token, method: :delete %>
+</div>

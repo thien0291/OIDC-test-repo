@@ -1,0 +1,72 @@
+<%= form_with(model: credit_token) do |form| %>
+  <% if credit_token.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(credit_token.errors.count, "error") %> prohibited this credit_token from being saved:</h2>
+
+      <ul>
+        <% credit_token.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :user_id, style: "display: block" %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div>
+    <%= form.label :provider, style: "display: block" %>
+    <%= form.text_field :provider %>
+  </div>
+
+  <div>
+    <%= form.label :token, style: "display: block" %>
+    <%= form.text_field :token %>
+  </div>
+
+  <div>
+    <%= form.label :threshold, style: "display: block" %>
+    <%= form.text_field :threshold %>
+  </div>
+
+  <div>
+    <%= form.label :expired_at, style: "display: block" %>
+    <%= form.datetime_field :expired_at %>
+  </div>
+
+  <div>
+    <%= form.label :cancelled_at, style: "display: block" %>
+    <%= form.datetime_field :cancelled_at %>
+  </div>
+
+  <div>
+    <%= form.label :hourly_threshold, style: "display: block" %>
+    <%= form.text_field :hourly_threshold %>
+  </div>
+
+  <div>
+    <%= form.label :daily_threshold, style: "display: block" %>
+    <%= form.text_field :daily_threshold %>
+  </div>
+
+  <div>
+    <%= form.label :weekly_threshold, style: "display: block" %>
+    <%= form.text_field :weekly_threshold %>
+  </div>
+
+  <div>
+    <%= form.label :monthly_threshold, style: "display: block" %>
+    <%= form.text_field :monthly_threshold %>
+  </div>
+
+  <div>
+    <%= form.label :transaction_threshold, style: "display: block" %>
+    <%= form.text_field :transaction_threshold %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

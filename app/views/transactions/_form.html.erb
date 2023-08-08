@@ -1,0 +1,26 @@
+<%= form_with(model: transaction) do |form| %>
+  <% if transaction.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
+
+      <ul>
+        <% transaction.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+    <%= form.hidden_field :user_id %>
+    <%= form.hidden_field :related_object_type %>
+    <%= form.hidden_field :related_object_id %>
+    <%= form.hidden_field :extra_info, value: transaction.extra_info.to_json %>
+
+
+
+  <div>
+    <% title ||= "Buy #{transaction.related_object.class} with #{transaction.related_object.price} #{transaction.related_object.currency}"%>
+    <%= form.submit title, data: {turbo: "false"}%>
+  </div>
+<% end %>
