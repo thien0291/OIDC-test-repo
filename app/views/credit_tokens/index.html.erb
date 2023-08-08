@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Credit tokens</h1>
+
+<div id="credit_tokens">
+  <% @credit_tokens.each do |credit_token| %>
+    <%= render credit_token %>
+    <p>
+      <%= link_to "Show this credit token", credit_token %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New credit token", new_credit_token_path %>

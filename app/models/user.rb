@@ -6,8 +6,13 @@ class User < ApplicationRecord
 
   devise :omniauthable, omniauth_providers: [:openid_connect]
 
-  def self.from_omniauth(auth)
+  has_many :transactions
+  has_many :completed_transactions, -> { where(status: "completed") }, class_name: "Transaction"
+  has_many :articles, through: :completed_transactions, source: :related_object, source_type: "Article"
+  has_many :access_passes, through: :completed_transactions, source: :related_object, source_type: "AccessPass"
+  has_many :credit_tokens
 
+  def self.from_omniauth(auth)
     # find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|
     find_or_create_by(email: auth.info.email) do |user|
       user.email = auth.info.email
@@ -21,6 +26,8 @@ class User < ApplicationRecord
       # user.skip_confirmation!
     end
   end
-end
 
-# https://pressingly-account.onrender.com/oauth/authorize?client_id=Vm3O1AwPLPWChwBkWPW8FRSrDP_kuZjjOckqo6EtCzY&nonce=d8d321c82af5e4b6377a0b3969619b63&redirect_uri=https%3A%2F%2Flocalhost%3A3000%2Fusers%2Fauth%2Fpressingly%2Fcallback&response_type=code&scope=openid%20email&state=9638bc50f905e9b50fff6268928630f3
+  def can_access?(article)
+    articles.include?(article) || access_passes.active.any?
+  end
+end
