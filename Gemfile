@@ -84,3 +84,5 @@ gem "motor-admin", "~> 0.4.20"
 gem "repost", "~> 0.4.1"
 
 gem "rest-client", "~> 2.1"
+
+gem "tailwindcss-rails", "~> 2.0"
