@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # should authenticate with admin_user instead
-  resources :articles
 
   # TODO: change this later
   get '/economy', to: 'articles#index'
@@ -14,6 +13,7 @@ Rails.application.routes.draw do
   get '/health', to: 'articles#index'
 
   authenticate :user do
+    resources :articles
     mount Motor::Admin => "/motor_admin"
     resources :transactions do
       get "confirm", on: :member, to: "transactions#confirm"
