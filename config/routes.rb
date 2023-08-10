@@ -5,6 +5,14 @@ Rails.application.routes.draw do
   # should authenticate with admin_user instead
   resources :articles
 
+  # TODO: change this later
+  get '/economy', to: 'articles#index'
+  get '/politics-and-laws', to: 'articles#index'
+  get '/society', to: 'articles#index'
+  get '/sports', to: 'articles#index'
+  get '/tech', to: 'articles#index'
+  get '/health', to: 'articles#index'
+
   authenticate :user do
     mount Motor::Admin => "/motor_admin"
     resources :transactions do
@@ -18,6 +26,6 @@ Rails.application.routes.draw do
   end
 
   # Defines the root path route ("/")
-  root "home#index"
+  root "articles#index"
   # devise :omniauthable, omniauth_providers: %i[openid_connect]
 end

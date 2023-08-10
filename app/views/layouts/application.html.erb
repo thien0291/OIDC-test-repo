@@ -19,16 +19,13 @@
     <!-- render topnav -->
     <%= render "layouts/topnav" %>
 
-    <div class="container mx-auto md:px-6 md:mx-12 mt-28">
-      <h2 class=" font-monoton  text-center text-3xl font-bold">The Pressingly </h2>
-      <p class=" text-center mb-12 font-thin"> Amplifying Freelance Voices, Forging Editorial Frontiers </p>
-    </div>
-
     <main class="container mx-auto mt-28 px-5 flex">
       <!-- Container for demo purpose -->
       <p style="color: green"><%= notice %></p>
       <%= yield %>
 
     </main>
+
+    <%= render "layouts/footer" %>
   </body>
 </html>
