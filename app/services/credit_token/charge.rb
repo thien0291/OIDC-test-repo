@@ -9,7 +9,7 @@ class CreditToken::Charge
   end
 
   def call
-    api_endpoint = "https://localhost:3000"
+    api_endpoint = ENV["PRESSINGLY_API_ENDPOINT"]
     api_request = RestClient::Resource.new(api_endpoint, verify_ssl: false)
 
     response = api_request["/credit_tokens/charge.json"].post({

@@ -33,33 +33,28 @@ class CreditTokensController < ApplicationController
     # the url we will process after successfull issue new credit token
     transaction_id = params["transaction_id"]
 
-    redirect_post("https://localhost:3000/credit_tokens",
-                  params: {
-                    "organization_id": "3c6c4cbe-d2ac-4aad-927e-0eab96f74262",
-                    "return_url": "https://localhost:3005/credit_tokens/#{credit_token.id}/callback?transaction_id=#{transaction_id}",
-                    "cancel_url": "https://localhost:3005/credit_tokens/cancel?id=#{credit_token.id}",
-                  })
+    req_params = {
+      "organization_id": ENV["PRESSINGLY_ORGANIZATION_ID"],
+      "return_url": callback_credit_token_url(credit_token, transaction_id: transaction_id),
+      "cancel_url": callback_credit_token_url(credit_token, transaction_id: transaction_id),
+    }.to_json
 
-    # @credit_token = CreditToken.new(credit_token_params)
+    # redirect_post only pass 3rd party cookie => always redirect to login page
+    raw_secret_params = ActiveSupport::MessageEncryptor
+      .new(ENV["PRESSINGLY_SECRET_KEY"])
+      .encrypt_and_sign(req_params)
 
-    # if @credit_token.save
-    #   redirect_post("https://localhost:3000/credit_tokens/new",
-    #                 params: {
-    #                   "organization_id": "3c6c4cbe-d2ac-4aad-927e-0eab96f74262",
-    #                   "return_url": confirm_transaction_url(@transaction, provider: "pressingly"),
-    #                   "cancel_url": "https://localhost:3005/transactions/cancel?transaction_id=#{@transaction.id}",
-    #                 })
-    # else
-    #   redirect_to :back
-    # end
+    secret_params = Base64.encode64(raw_secret_params)
+
+    redirect_url = ENV["CREDIT_TOKEN_URL"] + "?encrypted_params=#{secret_params}&organization_id=#{ENV["PRESSINGLY_ORGANIZATION_ID"]}"
+    redirect_to redirect_url, allow_other_host: true
   end
 
   def callback
-    pressingly_secret_key = "73021de40b5d2ebabba7a7310ed035a9"
     encrypted_credit_token = Base64.decode64(params[:encrypted_credit_token])
 
     secret_token = ActiveSupport::MessageEncryptor
-      .new(pressingly_secret_key)
+      .new(ENV["PRESSINGLY_SECRET_KEY"])
       .decrypt_and_verify(encrypted_credit_token)
 
     @credit_token.update(secret_token: secret_token)

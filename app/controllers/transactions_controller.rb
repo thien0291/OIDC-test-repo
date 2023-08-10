@@ -22,10 +22,6 @@ class TransactionsController < ApplicationController
 
   # POST /transactions or /transactions.json
   def create
-    # @transaction = if params[:id]
-    #     current_user.transactions.find(params[:id])
-    #   else
-    #   end
     @transaction = current_user.transactions.new(transaction_params)
 
     @transaction.status = "pending"
@@ -119,7 +115,7 @@ class TransactionsController < ApplicationController
 
   # charge directly over confirmation page
   def direct_charge
-    redirect_post("https://localhost:3000/charge",
+    redirect_post(ENV["PRESSINGLY_CHARGE_URL"],
                   params: {
                     "order_items": [
                       {
@@ -132,7 +128,7 @@ class TransactionsController < ApplicationController
                     ],
                     "organization_id": "3c6c4cbe-d2ac-4aad-927e-0eab96f74262",
                     "return_url": confirm_transaction_url(@transaction, provider: "pressingly"),
-                    "cancel_url": "https://localhost:3005/transactions/cancel?transaction_id=#{@transaction.id}",
+                    "cancel_url": callback_credit_token_url(credit_token, transaction_id: transaction_id),
                   })
   end
 end
