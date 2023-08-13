@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get "/tech", to: "articles#index"
   get "/health", to: "articles#index"
 
-  get "/not-found", to: "errors#page_not_found"
+  match "/404", to: "errors#page_not_found", via: :all
 
   authenticate :user do
     resources :articles
