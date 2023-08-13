@@ -5,12 +5,14 @@ Rails.application.routes.draw do
   # should authenticate with admin_user instead
 
   # TODO: change this later
-  get '/economy', to: 'articles#index'
-  get '/politics-and-laws', to: 'articles#index'
-  get '/society', to: 'articles#index'
-  get '/sports', to: 'articles#index'
-  get '/tech', to: 'articles#index'
-  get '/health', to: 'articles#index'
+  get "/economy", to: "articles#index"
+  get "/politics-and-laws", to: "articles#index"
+  get "/society", to: "articles#index"
+  get "/sports", to: "articles#index"
+  get "/tech", to: "articles#index"
+  get "/health", to: "articles#index"
+
+  get "/not-found", to: "errors#page_not_found"
 
   authenticate :user do
     resources :articles
