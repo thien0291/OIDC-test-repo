@@ -1,25 +1,38 @@
-<div id="<%= dom_id article %>">
-  <h1 class="text-3xl mb-6">
+<%= javascript_include_tag 'articles', defer: true %>
+
+<div id="<%= dom_id article %>" class="basis-2/3 m-auto">
+  <h1 class="text-4xl font-bold">
     <%= article.title %>
   </h1>
 
-  <p class="text-sm my-3">
-    <i><%= article.summary %></i>
+  <p class="text-lg my-4 italic">
+    <%= article.summary %>
   </p>
+
+  <%= image_tag 'https://mdbcdn.b-cdn.net/img/new/standard/city/018.jpg', alt: 'Article Thumbnail', class: 'w-full' %>
 
   <% if defined?(no_content) %>
   <% elsif current_user.can_access?(article) %>
-    <p>
-      <%= article.content %>
-    </p>
+    <div class="whitespace-pre-wrap leading-7">
+      <%= article.content.to_plain_text %> 
+    </div>
   <% else %>
-    <p>
-      <%= article.content.to_plain_text.truncate(1000) %>
-    </p>
+    <div class="whitespace-pre-wrap leading-7">
+      <%= article.content.to_plain_text %> 
+    </div>
 
-    <%= render partial: 'transactions/form', locals: { transaction: Transaction.new(user: current_user, related_object: article, extra_info: {return_url: article_url(article)}) }%>
-    <%= render partial: 'transactions/form', locals: { title: "Buy 1-day Pass", transaction: Transaction.new(user: current_user, related_object: AccessPass.create(valid_from: Time.now, valid_until: 25.hours.from_now), extra_info: {return_url: article_url(article)}) }%>
+    <%= render "accounts/paywall" %>
+
+        <%
+=begin%>
+<div class="flex flex-row wrap">
+          <%= render partial: 'transactions/form', locals: { transaction: Transaction.new(user: current_user, related_object: article, extra_info: {return_url: article_url(article)}) }%>
+
+          <%= render partial: 'transactions/form', locals: { title: "Buy 1-day Pass", transaction: Transaction.new(user: current_user, related_object: AccessPass.create(valid_from: Time.now, valid_until: 25.hours.from_now), extra_info: {return_url: article_url(article)}) }%>
+        </div>
+          
+        <button id="close-overlay">Close</button> 
+<%
+=end%>
   <% end %>
-
-
 </div>
