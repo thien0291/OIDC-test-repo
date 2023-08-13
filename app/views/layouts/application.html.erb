@@ -16,16 +16,15 @@
   </head>
 
   <body>
-    <!-- render topnav -->
-    <%= render "layouts/topnav" %>
+    <div class="flex flex-col">
+      <%= render "layouts/topnav" %>
 
-    <main class="container mx-auto mt-28 px-5 flex">
-      <!-- Container for demo purpose -->
-      <p style="color: green"><%= notice %></p>
-      <%= yield %>
+      <main class="container min-h-screen mx-auto mt-28 px-5 flex grow">
+        <p style="color: green"><%= notice %></p>
+        <%= yield %>
+      </main>
 
-    </main>
-
-    <%= render "layouts/footer" %>
+      <%= render "layouts/footer" %>
+    </div>
   </body>
 </html>
