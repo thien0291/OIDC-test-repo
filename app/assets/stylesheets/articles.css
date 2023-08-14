@@ -1,0 +1,29 @@
+.noscroll {
+  overflow: hidden;
+}
+
+.overlay {
+  inset: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+  display: none;
+}
+
+[aria-hidden="true"] {
+  display: none;
+}
+
+[aria-hidden="false"] {
+  display: flex;
+}
+
+.overlay-content {
+  background: white;
+  border-radius: 0;
+  box-shadow: rgba(0, 0, 0, 0.22) 0px -2px 31px;
+  box-sizing: border-box;
+  position: absolute;
+  top: 100vh;
+  transform: translate(0px, -50vh);
+  /* transition slower effect - does not work */
+  /* transition: all 3s ease-in-out; */ 
+}

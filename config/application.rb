@@ -21,5 +21,8 @@ module RorTemplate
     config.generators do |g|
       g.orm :active_record, primary_key_type: :uuid
     end
+
+    # Add custom error handler
+    config.exceptions_app = self.routes
   end
 end

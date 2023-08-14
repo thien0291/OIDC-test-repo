@@ -21,6 +21,12 @@ Things you may want to cover:
 
 * Deployment instructions
 
+* How to run the development server
+- run `bundle install` to install all the required gems
+- run `RAILS_ENV=development bundle exec rake assets:precompile` every time you make changes in `/assets`
+- run `rails db:migrate`
+- run `bin/dev` to start the development server
+
 * ...
 
 
