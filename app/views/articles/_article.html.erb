@@ -12,16 +12,26 @@
   <%= image_tag 'https://mdbcdn.b-cdn.net/img/new/standard/city/018.jpg', alt: 'Article Thumbnail', class: 'w-full' %>
 
   <% if defined?(no_content) %>
-  <% elsif current_user.can_access?(article) %>
+  
+  <% elsif !user_signed_in? %>
     <div class="whitespace-pre-wrap leading-7">
       <%= article.content.to_plain_text %> 
     </div>
-  <% else %>
+    <%= render "paywall/signin" %>
+  
+  <% elsif !current_user.can_access?(article) %>
     <div class="whitespace-pre-wrap leading-7">
       <%= article.content.to_plain_text %> 
     </div>
+    <%= render "paywall/subscriptions" %>
+  
+  <% else%>
+    <div class="whitespace-pre-wrap leading-7">
+      <%= article.content.to_plain_text %> 
+    </div>
+  <% end %>         
 
-    <%= render "accounts/paywall" %>
+
 
         <%
 =begin%>
@@ -34,5 +44,5 @@
         <button id="close-overlay">Close</button> 
 <%
 =end%>
-  <% end %>
+  
 </div>
