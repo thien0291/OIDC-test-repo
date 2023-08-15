@@ -7,12 +7,20 @@
   <div class="text-start mb-4">
     <%= form.label :password, "Password", class: "block mb-1.5 text-sm font-medium" %>
     <%= form.password_field :password, autocomplete: "current-password", class: "bg-gray-50 border border-gray-300 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5", required: true %>
+    <% if @minimum_password_length %>
+      <p class="text-xs text-red-500 italic mt-1">Must be <%= @minimum_password_length %> characters minimum</p>
+    <% end %>
+  </div>
+
+  <div class="text-start mb-4">
+    <%= form.label :password_confirmation, "Confirm password", class: "block mb-1.5 text-sm font-medium" %>
+    <%= form.password_field :password_confirmation, autocomplete: "current-password", class: "bg-gray-50 border border-gray-300 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5", required: true %>
   </div>
   
-  <button type="submit" class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-2">Continue</button>
+  <button type="submit" class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-2">Sign up</button>
   
   <div class="text-sm font-light text-gray-500 ">
-    Don’t have an account yet? <a href="/users/sign_up" class="text-primary-600 hover:underline ">Sign up</a>
+    Already have an account? <a href="/users/sign_in" class="text-primary-600 hover:underline ">Sign in</a>
   </div>
 <% end %>
 
