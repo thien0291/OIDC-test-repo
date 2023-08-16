@@ -39,11 +39,13 @@ class CreditTokensController < ApplicationController
       "cancel_url": callback_credit_token_url(credit_token, transaction_id: transaction_id),
     }.to_json
 
+    # DANGER: Data is not encrypted is not encrypted
     # redirect_post only pass 3rd party cookie => always redirect to login page
-    raw_secret_params = ActiveSupport::MessageEncryptor
-      .new(ENV["PRESSINGLY_SECRET_KEY"])
-      .encrypt_and_sign(req_params)
+    # raw_secret_params = ActiveSupport::MessageEncryptor
+    #   .new(ENV["PRESSINGLY_SECRET_KEY"])
+    #   .encrypt_and_sign(req_params)
 
+    raw_secret_params = req_params
     secret_params = Base64.encode64(raw_secret_params)
 
     redirect_url = ENV["CREDIT_TOKEN_URL"] + "?encrypted_params=#{secret_params}&organization_id=#{ENV["PRESSINGLY_ORGANIZATION_ID"]}"
@@ -51,11 +53,16 @@ class CreditTokensController < ApplicationController
   end
 
   def callback
-    encrypted_credit_token = Base64.decode64(params[:encrypted_credit_token])
+    # encrypted_credit_token = Base64.decode64(params[:encrypted_credit_token])
 
-    secret_token = ActiveSupport::MessageEncryptor
-      .new(ENV["PRESSINGLY_SECRET_KEY"])
-      .decrypt_and_verify(encrypted_credit_token)
+    # secret_token = ActiveSupport::MessageEncryptor
+    #   .new(ENV["PRESSINGLY_SECRET_KEY"])
+    #   .decrypt_and_verify(encrypted_credit_token)
+
+    # TODO: encrypt secret token
+    # MUST: encrypt secret token
+    # DANGER: secret token is not encrypted
+    secret_token = params[:encrypted_credit_token]
 
     @credit_token.update(secret_token: secret_token)
     # TODO: Fetch credit token information from pressingly
