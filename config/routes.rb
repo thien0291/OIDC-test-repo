@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'subscriptions/show'
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -12,10 +13,13 @@ Rails.application.routes.draw do
   get "/tech", to: "articles#index"
   get "/health", to: "articles#index"
 
+  get "/subscriptions", to: "subscriptions#index"
+
   match "/404", to: "errors#page_not_found", via: :all
 
+  resources :articles
+
   authenticate :user do
-    resources :articles
     mount Motor::Admin => "/motor_admin"
     resources :transactions do
       get "confirm", on: :member, to: "transactions#confirm"

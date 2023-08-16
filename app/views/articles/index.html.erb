@@ -8,7 +8,7 @@
         <% @articles.each_with_index do |article, index| %>
           <div class="mb-12 grid items-center gap-x-6 md:grid-cols-2 xl:gap-x-12">
             <div class="mb-6 md:mb-0 <%= "md:order-2" if index.odd? %>">
-              <div class="relative mb-6 overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg dark:shadow-black/20"
+              <div class="relative mb-6 overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg"
                 data-te-ripple-init data-te-ripple-color="light">
                 <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/018.jpg" class="w-full" alt="Louvre" />
                 <a href="<%= article_path(article) %>">
@@ -22,12 +22,12 @@
             <div class=" <%= "md:order-1" if index.odd? %>">
               <a href="<%= article_path(article) %>" class="h3 mb-3 text-2xl font-bold"><%= article.title %></a>
 
-              <p class="mb-6 text-neutral-500 ">
+              <p class="mb-6 text-neutral-500">
                 <small>Published <u><%= article.created_at.strftime("%b %d, %Y") %></u>
                 </small>
               </p>
 
-              <a href="<%= article_path(article) %>" class="text-neutral-500 ">
+              <a href="<%= article_path(article) %>" class="text-neutral-500">
                 <%= article.summary.truncate_words(50) %>
 
                 <span class="text-sm text-orange-500"> see more </span>
@@ -47,7 +47,7 @@
 
           <div class="mb-6 flex flex-wrap">
             <div class="mb-6 w-full shrink-0 grow-0 basis-auto px-3 md:mb-0 md:w-3/12">
-              <div class="relative mb-6 overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg dark:shadow-black/20"
+              <div class="relative mb-6 overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg"
                 data-te-ripple-init data-te-ripple-color="light">
                 <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/018.jpg" class="w-full" alt="Louvre" />
                 <a href="#!">
@@ -61,7 +61,7 @@
             <div class="mb-6 mr-auto w-full shrink-0 grow-0 basis-auto px-3 md:mb-0 md:w-9/12 xl:w-9/12">
               <h5 class="mb-3 text-md font-bold"> Don’t Let Your Company’s Culture Stifle Leadership Development</h5>
 
-              <p class="mb-6 text-neutral-500 dark:text-neutral-300">
+              <p class="mb-6 text-neutral-500">
                 <small>Published <u>13.01.2022</u> </small>
               </p>
 
@@ -70,7 +70,7 @@
 
           <div class="mb-6 flex flex-wrap">
             <div class="mb-6 w-full shrink-0 grow-0 basis-auto px-3 md:mb-0 md:w-3/12">
-              <div class="relative mb-6 overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg dark:shadow-black/20"
+              <div class="relative mb-6 overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg"
                 data-te-ripple-init data-te-ripple-color="light">
                 <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/032.jpg" class="w-full" alt="Louvre" />
                 <a href="#!">
@@ -84,7 +84,7 @@
             <div class="mb-6 mr-auto w-full shrink-0 grow-0 basis-auto px-3 md:mb-0 md:w-9/12 xl:w-9/12">
               <h5 class="mb-3 text-md font-bold">Mastering the Art of the Request</h5>
 
-              <p class="mb-6 text-neutral-500 dark:text-neutral-300">
+              <p class="mb-6 text-neutral-500">
                 <small>Published <u>12.01.2022</u> </small>
               </p>
 
@@ -93,7 +93,7 @@
 
           <div class="mb-6 flex flex-wrap">
             <div class="mb-6 w-full shrink-0 grow-0 basis-auto px-3 md:mb-0 md:w-3/12">
-              <div class="relative mb-6 overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg dark:shadow-black/20"
+              <div class="relative mb-6 overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg"
                 data-te-ripple-init data-te-ripple-color="light">
                 <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/059.jpg" class="w-full" alt="Louvre" />
                 <a href="#!">
@@ -107,7 +107,7 @@
             <div class="mb-6 mr-auto w-full shrink-0 grow-0 basis-auto px-3 md:mb-0 md:w-9/12 xl:w-9/12">
               <h5 class="mb-3 text-md font-bold">Mastering the Art of the Request</h5>
 
-              <p class="mb-6 text-neutral-500 dark:text-neutral-300">
+              <p class="mb-6 text-neutral-500">
                 <small>Published <u>12.01.2022</u> </small>
               </p>
 
@@ -116,7 +116,7 @@
 
           <div class="mb-6 flex flex-wrap">
             <div class="mb-6 w-full shrink-0 grow-0 basis-auto px-3 md:mb-0 md:w-3/12">
-              <div class="relative mb-6 overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg dark:shadow-black/20"
+              <div class="relative mb-6 overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg"
                 data-te-ripple-init data-te-ripple-color="light">
                 <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/018.jpg" class="w-full" alt="Louvre" />
                 <a href="#!">
@@ -130,7 +130,7 @@
             <div class="mb-6 mr-auto w-full shrink-0 grow-0 basis-auto px-3 md:mb-0 md:w-9/12 xl:w-9/12">
               <h5 class="mb-3 text-md font-bold"> Don’t Let Your Company’s Culture Stifle Leadership Development</h5>
 
-              <p class="mb-6 text-neutral-500 dark:text-neutral-300">
+              <p class="mb-6 text-neutral-500">
                 <small>Published <u>13.01.2022</u> </small>
               </p>
 
@@ -139,7 +139,7 @@
 
           <div class="mb-6 flex flex-wrap">
             <div class="mb-6 w-full shrink-0 grow-0 basis-auto px-3 md:mb-0 md:w-3/12">
-              <div class="relative mb-6 overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg dark:shadow-black/20"
+              <div class="relative mb-6 overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg"
                 data-te-ripple-init data-te-ripple-color="light">
                 <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/032.jpg" class="w-full" alt="Louvre" />
                 <a href="#!">
@@ -153,7 +153,7 @@
             <div class="mb-6 mr-auto w-full shrink-0 grow-0 basis-auto px-3 md:mb-0 md:w-9/12 xl:w-9/12">
               <h5 class="mb-3 text-md font-bold">Mastering the Art of the Request</h5>
 
-              <p class="mb-6 text-neutral-500 dark:text-neutral-300">
+              <p class="mb-6 text-neutral-500">
                 <small>Published <u>12.01.2022</u> </small>
               </p>
 
@@ -162,7 +162,7 @@
 
           <div class="mb-6 flex flex-wrap">
             <div class="mb-6 w-full shrink-0 grow-0 basis-auto px-3 md:mb-0 md:w-3/12">
-              <div class="relative mb-6 overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg dark:shadow-black/20"
+              <div class="relative mb-6 overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg"
                 data-te-ripple-init data-te-ripple-color="light">
                 <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/059.jpg" class="w-full" alt="Louvre" />
                 <a href="#!">
@@ -176,7 +176,7 @@
             <div class="mb-6 mr-auto w-full shrink-0 grow-0 basis-auto px-3 md:mb-0 md:w-9/12 xl:w-9/12">
               <h5 class="mb-3 text-md font-bold">Mastering the Art of the Request</h5>
 
-              <p class="mb-6 text-neutral-500 dark:text-neutral-300">
+              <p class="mb-6 text-neutral-500">
                 <small>Published <u>12.01.2022</u> </small>
               </p>
 
@@ -198,7 +198,7 @@
 
     <div class="grid gap-6 lg:grid-cols-3 xl:gap-x-12">
       <div class="mb-6 lg:mb-0">
-        <div class="relative mb-6 overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg dark:shadow-black/20"
+        <div class="relative mb-6 overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg"
           data-te-ripple-init data-te-ripple-color="light">
           <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/018.jpg" class="w-full" alt="Louvre" />
           <a href="#!">
@@ -209,7 +209,7 @@
         </div>
 
         <h5 class="mb-3 text-lg font-bold">Welcome to California</h5>
-        <div class="mb-3 flex items-center justify-center text-sm font-medium text-danger dark:text-danger-500">
+        <div class="mb-3 flex items-center justify-center text-sm font-medium text-danger">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
             stroke="currentColor" class="mr-2 h-5 w-5">
             <path stroke-linecap="round" stroke-linejoin="round"
@@ -217,11 +217,11 @@
           </svg>
           Travels
         </div>
-        <p class="mb-6 text-neutral-500 dark:text-neutral-300">
+        <p class="mb-6 text-neutral-500">
           <small>Published <u>13.01.2022</u> by
             <a href="#!">Anna Maria Doe</a></small>
         </p>
-        <p class="text-neutral-500 dark:text-neutral-300">
+        <p class="text-neutral-500">
           Ut pretium ultricies dignissim. Sed sit amet mi eget urna
           placerat vulputate. Ut vulputate est non quam dignissim
           elementum. Donec a ullamcorper diam.
@@ -229,7 +229,7 @@
       </div>
 
       <div class="mb-6 lg:mb-0">
-        <div class="relative mb-6 overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg dark:shadow-black/20"
+        <div class="relative mb-6 overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg"
           data-te-ripple-init data-te-ripple-color="light">
           <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/032.jpg" class="w-full" alt="Louvre" />
           <a href="#!">
@@ -240,7 +240,7 @@
         </div>
 
         <h5 class="mb-3 text-lg font-bold">Exhibition in Paris</h5>
-        <div class="mb-3 flex items-center justify-center text-sm font-medium text-primary dark:text-primary-400">
+        <div class="mb-3 flex items-center justify-center text-sm font-medium text-primary">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
             stroke="currentColor" class="mr-2 h-4 w-4">
             <path stroke-linecap="round" stroke-linejoin="round"
@@ -248,11 +248,11 @@
           </svg>
           Art
         </div>
-        <p class="mb-6 text-neutral-500 dark:text-neutral-300">
+        <p class="mb-6 text-neutral-500">
           <small>Published <u>12.01.2022</u> by
             <a href="#!">Halley Frank</a></small>
         </p>
-        <p class="text-neutral-500 dark:text-neutral-300">
+        <p class="text-neutral-500">
           Suspendisse in volutpat massa. Nulla facilisi. Sed aliquet diam
           orci, nec ornare metus semper sed. Integer volutpat ornare erat
           sit amet rutrum.
@@ -261,7 +261,7 @@
 
       <div class="mb-0">
         <div>
-          <div class="relative mb-6 overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg dark:shadow-black/20"
+          <div class="relative mb-6 overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg"
             data-te-ripple-init data-te-ripple-color="light">
             <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/059.jpg" class="w-full" alt="Louvre" />
             <a href="#!">
@@ -280,11 +280,11 @@
             </svg>
             Business
           </div>
-          <p class="mb-6 text-neutral-500 dark:text-neutral-300">
+          <p class="mb-6 text-neutral-500">
             <small>Published <u>10.01.2022</u> by
               <a href="#!">Joe Svan</a></small>
           </p>
-          <p class="text-neutral-500 dark:text-neutral-300">
+          <p class="text-neutral-500">
             Curabitur tristique, mi a mollis sagittis, metus felis mattis
             arcu, non vehicula nisl dui quis diam. Mauris ut risus eget
             massa volutpat feugiat. Donec.
