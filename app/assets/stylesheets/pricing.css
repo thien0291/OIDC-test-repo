@@ -1,0 +1,15 @@
+[data-tab-target][active] {
+  color: var(--color-primary-500);
+  border-bottom-width: 2px;
+  border-color: var(--color-primary-500);
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  padding: 1rem 2rem;
+  display: inline-block;
+  transition: all 0.3s ease-in-out;
+}
+
+[data-tab-target][active]:hover {
+  color: var(--color-primary-600);
+  border-color: var(--color-primary-600);
+}
