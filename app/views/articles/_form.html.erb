@@ -25,6 +25,11 @@
     <%= form.label :content, style: "display: block" %>
     <%= form.text_area :content %>
   </div>
+  
+  <div>
+    <%= form.label :tag_list, "Tags (separated by commas)", style: "display: block" %>
+    <%= form.text_field :tag_list %>
+  </div>
 
   <div>
     <%= form.label :price, style: "display: block" %>

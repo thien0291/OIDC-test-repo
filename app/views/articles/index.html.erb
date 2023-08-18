@@ -27,6 +27,12 @@
                 </small>
               </p>
 
+              <div class="mb-2">
+                <span class="text-primary-700 font-semibold">Category:</span>
+                <% tag_list = article.tag_list.join(', ') %>
+                <span class="text-primary-700"><%= tag_list %></span>
+              </div>
+
               <a href="<%= article_path(article) %>" class="text-neutral-500">
                 <%= article.summary.truncate_words(50) %>
 
