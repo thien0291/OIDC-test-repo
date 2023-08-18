@@ -10,10 +10,13 @@ Things you may want to cover:
 * System dependencies
 
 * Configuration
+- run `bundle install` to install all the required gems
 
 * Database creation
+- run `rails db:migrate` to generate required tables
 
 * Database initialization
+- run `rails db:generate_mock_articles` to generate mock articles data in database
 
 * How to run the test suite
 
@@ -22,9 +25,7 @@ Things you may want to cover:
 * Deployment instructions
 
 * How to run the development server
-- run `bundle install` to install all the required gems
 - run `RAILS_ENV=development bundle exec rake assets:precompile` every time you make changes in `/assets`
-- run `rails db:migrate`
 - run `bin/dev` to start the development server
 
 * ...

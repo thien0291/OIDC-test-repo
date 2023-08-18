@@ -29,8 +29,7 @@
 
               <div class="mb-2">
                 <span class="text-primary-700 font-semibold">Category:</span>
-                <% tag_list = article.tag_list.join(', ') %>
-                <span class="text-primary-700"><%= tag_list %></span>
+                <span class="text-primary-700"><%= article.tag_list.join(', ') %></span>
               </div>
 
               <a href="<%= article_path(article) %>" class="text-neutral-500">
