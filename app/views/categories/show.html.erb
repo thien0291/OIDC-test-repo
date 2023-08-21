@@ -2,6 +2,8 @@
   <div class="grid grid-cols-3 gap-4">
     <div class="col-span-2">
       <%= render "categories/group", articles: @articles_by_category %>
+
+      <%= render "categories/pagination" %>
     </div>
   </div>
 </div>

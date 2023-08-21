@@ -92,3 +92,6 @@ gem 'acts-as-taggable-on', '~> 9.0'
 
 # Generate fake data [https://github.com/faker-ruby/faker]
 gem 'faker'
+
+# Pagination library [https://github.com/mislav/will_paginate]
+gem 'will_paginate'

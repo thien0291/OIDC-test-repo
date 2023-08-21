@@ -3,6 +3,6 @@ class CategoriesController < ApplicationController
     @category_id = params[:id]
     category = CATEGORIES.find { |item| item[:id] == @category_id }
 
-    @articles_by_category = Article.tagged_with(category[:name].downcase)
+    @articles_by_category = Article.tagged_with(category[:name].downcase).paginate(page: params[:page], per_page: 5)
   end
 end

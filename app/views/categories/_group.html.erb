@@ -9,7 +9,7 @@
     <% if !articles.present? %>
       No articles found.
     <% else %>
-      <% articles.first(6).each do |article| %>
+      <% articles.each do |article| %>
         <li class="py-6">
           <div class="flex flex-row items-center 2xl:space-y-0">
             <div class="w-2/5">
@@ -50,11 +50,3 @@
     <% end %>
   </ul>
 </div>
-
-<% if articles.length > 6 %>
-  <div class="flex justify-start text-base font-medium leading-6">
-    <a href="<%= articles_path %>" class="text-primary-500 hover:text-primary-600">
-      Read more &rarr;
-    </a>
-  </div>
-<% end %>
