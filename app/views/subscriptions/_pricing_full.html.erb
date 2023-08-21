@@ -1,0 +1,38 @@
+<%= javascript_include_tag "pricing", defer: true %>
+
+<div class="px-4 mx-auto max-w-screen-xl 2xl:px-6">
+    <div class="mx-auto max-w-screen-md text-center mb-8 lg:mb-12">
+        <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Choose the subscription that's right for you</h2>
+    </div>
+
+  <ul class="flex list-none flex-wrap justify-center rounded-xl bg-blue-gray-50/60 p-1" data-tabs="tabs" role="list">
+    <li class="mr-2 text-center">
+        <a class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 hover:cursor-pointer transition-all ease-in-out"
+            data-tab-target="#daily"
+            role="tab"
+            aria-selected="true"
+            aria-controls="daily"
+            active>
+            Daily
+        </a>
+    </li>
+    <li class="mr-2 text-center">
+      <a class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 hover:cursor-pointer transition-all ease-in-out"
+        data-tab-target="#monthly"
+        role="tab"
+        aria-selected="false"
+        aria-controls="monthly">
+        Monthly
+      </a>
+    </li>
+  </ul>
+
+  <div data-tab-content="" class="p-5">
+    <div class="block opacity-100" id="daily" role="tabpanel">
+      <%= render "/subscriptions/daily_pricing"%>
+    </div>
+    <div class="hidden opacity-0" id="monthly" role="tabpanel">
+      <%= render "/subscriptions/monthly_pricing"%>
+    </div>
+  </div>
+</div>

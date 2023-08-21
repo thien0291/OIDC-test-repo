@@ -1,6 +1,5 @@
 function setupOverlay() {
   const paywallOverlay = document.getElementById('paywall-overlay');
-  const closeOverlayButton = document.getElementById('close-overlay');
   const body = document.body;
 
   function scrollToTop() {
@@ -34,10 +33,6 @@ function setupOverlay() {
       window.removeEventListener('scroll', checkScrollPosition); // Remove the scroll listener after showing the overlay
     }
   }
-
-  closeOverlayButton.addEventListener('click', () => {
-    closeOverlay();
-  });
 
   // Listen for the scroll event on the window
   window.addEventListener('scroll', checkScrollPosition);

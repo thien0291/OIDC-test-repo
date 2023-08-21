@@ -1,0 +1,4 @@
+/* customizing css since background-color is being predefined by flowbite.min.css */
+button[type="submit"] {
+  background-color: #2661f2;
+}

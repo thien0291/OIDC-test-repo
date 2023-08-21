@@ -15,18 +15,31 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
 
+    <!-- Include Flowbite library https://flowbite.com/docs/getting-started/quickstart/ -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.0/flowbite.min.css" rel="stylesheet" />
   </head>
 
   <body>
-    <div class="flex flex-col">
-      <%= render "layouts/topnav" %>
-
-      <main class="container min-h-screen mx-auto mt-28 px-5 flex grow">
+    <div class="flex flex-col min-h-screen h-auto">
+      <% if content_for(:auth_topnav).present? %>
+        <%= yield :auth_topnav %>
+      <% else %>
+        <%= render "layouts/topnav" %>
+      <% end %>
+    
+      <main class="container mx-auto mt-28 px-5 flex grow">
         <p style="color: green"><%= notice %></p>
         <%= yield %>
       </main>
 
-      <%= render "layouts/footer" %>
+      <% if content_for(:auth_footer).present? %>
+        <%= yield :auth_footer %>
+      <% else %>
+        <%= render "layouts/footer" %>
+      <% end %>
     </div>
+
+    <%= javascript_include_tag "turbo" %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.0/flowbite.min.js"></script>
   </body>
 </html>
