@@ -4,9 +4,7 @@ Rails.application.routes.draw do
 
   # should authenticate with admin_user instead
 
-  CATEGORIES.each do |category|
-    get "/#{category[:uri]}", to: "categories#show", category_name: category[:name]
-  end
+  get "/categories/:id", to: "categories#show"
 
   get "/subscriptions", to: "subscriptions#index"
 

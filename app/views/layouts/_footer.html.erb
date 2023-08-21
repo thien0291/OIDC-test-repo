@@ -13,7 +13,7 @@
           <ul class="text-gray-500 font-medium">
             <% CATEGORIES.each do |category| %>
               <li class="mb-4">
-                <a href="<%= category[:uri] %>" class="hover:underline"><%= category[:name] %></a>
+                <a href="/categories/<%= category[:id] %>" class="hover:underline"><%= category[:name] %></a>
               </li>
             <% end %>
           </ul>

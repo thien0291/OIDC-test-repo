@@ -5,6 +5,6 @@ CATEGORIES_CONFIG = YAML.load_file("config/categories.yml")
 CATEGORIES = CATEGORIES_CONFIG["page_categories"].map do |category|
     {
       name: category["name"],
-      uri: category["uri"]
+      id: category["id"]
     }
   end
