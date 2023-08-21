@@ -1,0 +1,23 @@
+name: Deploy on Release or Merge
+
+on:
+  push:
+    branches:
+      - main
+  release:
+    types:
+      - created
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Trigger Deployment
+        env:
+          DEPLOY_TRIGGER_URL: ${{ secrets.DEPLOY_TRIGGER_URL }}
+        run: |
+          wget $DEPLOY_TRIGGER_URL
