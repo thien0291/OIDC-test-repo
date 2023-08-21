@@ -1,10 +1,16 @@
-<div class="container mx-auto md:px-6">
-  <div class="grid grid-cols-3 gap-4">
-    <div class="col-span-2">
-      <%= render "categories/group", articles: @articles_by_category %>
+<div>
+  <%= render "categories/hero", hero_title: @category_name %>
+  
+  <div class="container mx-auto">
 
-      <%= render "categories/pagination" %>
+    <div class="grid grid-cols-3 gap-4">
+      <div class="col-span-2">
+        <%= render "categories/group", articles: @articles_by_category %>
+
+        <%= render "categories/pagination" %>
+      </div>
     </div>
   </div>
 </div>
+
 

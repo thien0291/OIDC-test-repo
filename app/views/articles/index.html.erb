@@ -1,11 +1,10 @@
-
 <div class="container mx-auto md:px-6">
   <div class="grid grid-cols-3 gap-4">
     <div class="col-span-2">
       <!-- Section: Design Block -->
       <section class="mb-32 text-center md:text-left">
 
-        <% @articles.each_with_index do |article, index| %>
+        <% @articles.first(5).each_with_index do |article, index| %>
           <div class="mb-12 grid items-center gap-x-6 md:grid-cols-2 xl:gap-x-12">
             <div class="mb-6 md:mb-0 <%= "md:order-2" if index.odd? %>">
               <div class="relative mb-6 overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg"
@@ -196,9 +195,9 @@
   </div>
 
 
-
-    <!-- Section: Design Block -->
-  <section class="mb-32 text-center">
+  <%
+=begin%>
+ <section class="mb-32 text-center">
     <h2 class="mb-12 text-center text-3xl font-bold">Latest articles</h2>
 
     <div class="grid gap-6 lg:grid-cols-3 xl:gap-x-12">
@@ -297,8 +296,9 @@
         </div>
       </div>
     </div>
-  </section>
-  <!-- Section: Design Block -->
+  </section> 
+<%
+=end%>
 </div>
 
 

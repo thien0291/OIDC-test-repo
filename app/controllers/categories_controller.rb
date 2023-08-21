@@ -1,8 +1,9 @@
 class CategoriesController < ApplicationController
   def show
-    @category_id = params[:id]
-    category = CATEGORIES.find { |item| item[:id] == @category_id }
+    category = CATEGORIES.find { |item| item[:id] == params[:id] }
+    @category_name = category[:name]
+    @category_id = category[:id]
 
-    @articles_by_category = Article.tagged_with(category[:name].downcase).paginate(page: params[:page], per_page: 5)
+    @articles_by_category = Article.tagged_with(@category_name.downcase).paginate(page: params[:page], per_page: 5)
   end
 end
