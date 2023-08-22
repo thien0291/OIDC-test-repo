@@ -3,17 +3,19 @@
     <div class="col-span-2">
       <section class="mb-16">
         <div class="relative mb-8">
-          <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/018.jpg" class="w-full object-cover" alt="Image 1" />
-          <div class="absolute inset-0 bg-black/40 w-full h-fit flex flex-col text-start items-start p-4 mb-0 mt-auto px-10 text-slate-200">
-            <h2 class="text-3xl font-semibold mb-2"><%= @articles[0].title %></h2>
+          <a href="<%= article_path(@articles[0]) %>">
+            <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/018.jpg" class="w-full object-cover rounded" alt="Banner" />
+          </a>
+          <a href="<%= article_path(@articles[0]) %>" class="absolute inset-0 bg-black/40 w-full h-fit flex flex-col text-start items-start p-4 mb-0 mt-auto px-10 text-slate-200 hover:text-slate-300">
+            <h2 class="text-3xl font-semibold mb-2 hover:underline"><%= @articles[0].title %></h2>
 
-            <p class="mb-4 text-slate-200 text-sm">
-              <small>Published <u><%= @articles[0].created_at.strftime("%b %d, %Y") %></u>
+            <p class="mb-4 text-sm">
+              <small>Published <u><%= format_date(@articles[0].created_at) %></u>
               </small>
             </p>
 
             <p class="text-start text-normal"><%= @articles[0].summary.truncate_words(30) %></p>
-          </div>
+          </a>
         </div>
 
         <%= render "home/articles_grid", articles: @articles, grid_col: 3, lines: 1 %>
