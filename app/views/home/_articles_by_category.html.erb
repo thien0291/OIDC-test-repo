@@ -24,7 +24,7 @@
                   <div>
                     <h2 class="text-2xl font-bold leading-8 tracking-tight">
                       <a href=<%= article_path(article) %> class="text-gray-900 ">
-                        <%= article.title %>
+                        <%= article.title.truncate_words(8) %>
                       </a>
                     </h2>
                     <div class="text-base font-medium leading-6 text-gray-500">
