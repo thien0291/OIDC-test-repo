@@ -1,0 +1,28 @@
+<% articles.first(count).each do |article| %>
+  <div class="mb-6 flex flex-wrap px-4">
+    <div class="mb-4 w-full basis-auto">
+      <div class="relative overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg"
+        data-te-ripple-init data-te-ripple-color="light">
+        <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/018.jpg" class="w-full" alt="Louvre" />
+        <a href="<%= article_path(article) %>">
+          <div
+            class="absolute top-0 right-0 bottom-0 left-0 h-full w-full overflow-hidden bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-100 bg-[hsla(0,0%,98.4%,.15)]">
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="mr-auto w-full basis-auto px-2">
+      <div class="mb-2 flex items-center justify-center">
+        <a href="<%= article_path(article) %>" class="text-lg font-bold hover:text-neutral-700">
+          <%= article.title.truncate_words(8) %>
+        </a>
+      </div>
+
+      <p class="mb-2 text-neutral-500 text-sm">
+        <small>Published <u><%= @articles[0].created_at.strftime("%b %d, %Y") %></u>
+        </small>
+      </p>
+    </div>
+  </div>
+<% end %>
