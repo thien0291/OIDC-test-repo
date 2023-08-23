@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   # should authenticate with admin_user instead
 
-  get "/categories/:id", to: "categories#show"
+  get "/categories/:name", to: "categories#show"
 
   get "/subscriptions", to: "subscriptions#index"
 

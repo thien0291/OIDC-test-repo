@@ -28,8 +28,8 @@
       </section>
 
       <section class="mb-16">
-        <% CATEGORIES.each do |category| %>
-          <%= render "home/articles_by_category", articles: Article.tagged_with(category[:name].downcase), category_title: category[:name], lines: 4 %>
+        <% all_categories.each do |category_name| %>
+          <%= render "home/articles_by_category", articles: Article.tagged_with(category_name.downcase), category_title: category_name, lines: 4 %>
         <% end %>
       </section>
     </div>
