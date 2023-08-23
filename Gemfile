@@ -86,3 +86,12 @@ gem "repost", "~> 0.4.1"
 gem "rest-client", "~> 2.1"
 
 gem "tailwindcss-rails", "~> 2.0"
+
+# Add tags attribute to model [https://github.com/mbleigh/acts-as-taggable-on]
+gem 'acts-as-taggable-on', '~> 9.0'
+
+# Generate fake data [https://github.com/faker-ruby/faker]
+gem 'faker'
+
+# Pagination library [https://github.com/mislav/will_paginate]
+gem 'will_paginate'
