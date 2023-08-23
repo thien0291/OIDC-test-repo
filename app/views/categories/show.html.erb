@@ -1,7 +1,10 @@
-<div>
+<div class="w-full">
   <%= render "categories/hero", hero_title: @category_name, articles: @articles_by_category %>
 
-  <div class="container mx-auto">
+
+  <%# I want to make container is full %>
+
+  <div class="container mx-auto ">
 
     <div class="grid grid-cols-3 gap-4">
       <div class="col-span-2">
