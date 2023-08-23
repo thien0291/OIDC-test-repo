@@ -1,12 +1,5 @@
 module ApplicationHelper
-  def article_categories
-    [
-      { name: 'Economy', uri: 'economy' },
-      { name: 'Politics & Laws', uri: 'politics-and-laws' },
-      { name: 'Society', uri: 'society' },
-      { name: 'Sports', uri: 'sports' },
-      { name: 'Tech', uri: 'tech' },
-      { name: 'Health', uri: 'health' }
-    ]
+  def all_categories
+    ActsAsTaggableOn::Tag.for_context(:categories).map(&:name)
   end
 end

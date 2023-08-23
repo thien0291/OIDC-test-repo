@@ -1,0 +1,55 @@
+<div class="divide-y divide-gray-200">
+  <div class="pb-6 ml-6">
+    <h1 class="text-3xl font-extrabold leading-9 tracking-tight text-grey-700">
+      Latest
+    </h1>
+  </div>
+  
+  <ul class="divide-y divide-gray-200">
+    <% if !articles.present? %>
+      No articles found.
+    <% else %>
+      <% articles.each do |article| %>
+        <li class="py-6">
+          <div class="flex flex-row items-center 2xl:space-y-0">
+            <div class="w-2/5">
+              <div class="aspect-w-5 aspect-h-3 mx-4">
+                <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/018.jpg" class="w-full rounded" alt="Louvre" />
+                <a href="<%= article_path(article) %>">
+                  <div
+                    class="absolute top-0 right-0 bottom-0 left-0 h-full w-full overflow-hidden bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-100 bg-[hsla(0,0%,98.4%,.15)]">
+                  </div>
+              </div>
+            </div>
+
+            <div class="w-3/5 space-y-5 col-span-3">
+              <div class="space-y-5">
+                <div class="items-center">
+                  <h2 class="text-2xl font-bold leading-8 tracking-tight">
+                    <a href="<%= article_path(article) %>" class="text-gray-900 hover:text-gray-700 hover:underline">
+                      <%= article.title %>
+                    </a>
+                  </h2>
+                  <div class="text-base font-medium leading-6 text-gray-500">
+                    <%= format_date(article.created_at) %>
+                  </div>
+                </div>
+
+                <div class="prose max-w-none text-gray-500">
+                  <%= truncate(article.summary, length: 160) %>
+                </div>
+              </div>
+
+              <div class="text-base font-medium leading-6">
+                <a href=<%= article_path(article) %> class="text-primary-500 hover:text-primary-600">
+                  Read more &rarr;
+                </a>
+              </div>
+
+            </div>
+          </div>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
