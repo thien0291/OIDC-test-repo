@@ -1,0 +1,29 @@
+name: Deploy on Release or Merge
+
+on:
+  push:
+    branches:
+      - main
+  release:
+    types:
+      - created
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Trigger CTF Deployment
+        env:
+          DEPLOY_CTF_TRIGGER_URL: ${{ secrets.DEPLOY_CTF_TRIGGER_URL }}
+        run: |
+          wget $DEPLOY_CTF_TRIGGER_URL
+          
+      - name: Trigger DATASTREAM Deployment
+        env:
+          DEPLOY_DATASTREAM_TRIGGER_URL: ${{ secrets.DEPLOY_DATASTREAM_TRIGGER_URL }}
+        run: |
+          wget $DEPLOY_DATASTREAM_TRIGGER_URL

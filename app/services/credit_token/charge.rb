@@ -10,7 +10,7 @@ class CreditToken::Charge
 
   def call
     api_endpoint = ENV["PRESSINGLY_API_ENDPOINT"]
-    api_request = RestClient::Resource.new(api_endpoint, verify_ssl: false)
+    api_request = RestClient::Resource.new(api_endpoint, verify_ssl: Rails.env.production?)
 
     response = api_request["/credit_tokens/charge.json"].post({
       # TODO: encrypt the secret Token with secret key

@@ -2,13 +2,13 @@
     <div class="lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10">
         <!-- Pricing Card -->
         <div class="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow xl:p-8 h-fit">
-            <h3 class="mb-4 text-2xl font-semibold">All News</h3>
+            <h3 class="mb-4 text-2xl font-semibold">Daily Pass</h3>
             <p class="font-light text-gray-500 sm:text-lg">Unlimited access for the day.</p>
             <div class="flex justify-center items-baseline my-8">
-                <span class="mr-2 text-5xl font-extrabold">$10</span>
-                <span class="text-gray-500">/month</span>
+                <span class="mr-2 text-5xl font-extrabold">$1</span>
+                <span class="text-gray-500">/day</span>
             </div>
-            <a href="/subscriptions" class="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Subscribe now</a>
+            <%= render partial: 'transactions/form', locals: { title: "Subscribe now", transaction: Transaction.new(user: current_user, related_object: AccessPass.create(valid_from: Time.now, valid_until: 25.hours.from_now), extra_info: {return_url: article_path(article)}) }%>
         </div>
         <!-- Pricing Card -->
         <div class="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow xl:p-8 h-fit">
@@ -29,8 +29,8 @@
             <h3 class="mb-4 text-2xl font-semibold">All Sports</h3>
             <p class="font-light text-gray-500 sm:text-lg">Unlimited access for the whole month.</p>
             <div class="flex justify-center items-baseline my-8">
-                <span class="mr-2 text-5xl font-extrabold">$0.05</span>
-                <span class="text-gray-500">/day</span>
+                <span class="mr-2 text-5xl font-extrabold">$30</span>
+                <span class="text-gray-500">/month</span>
             </div>
             <a href="/subscriptions" class="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Subscribe now</a>
         </div>

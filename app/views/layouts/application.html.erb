@@ -7,7 +7,7 @@
     <%= csp_meta_tag %>
 
     <%= favicon_link_tag "https://flowbite.com/docs/images/logo.svg" %>
-    
+
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
@@ -26,11 +26,13 @@
       <% else %>
         <%= render "layouts/topnav" %>
       <% end %>
-    
+
+
       <main class="container mx-auto mt-28 flex grow">
         <%= render "layouts/success_popup" %>
         <%= yield %>
       </main>
+
 
       <% if content_for(:auth_footer).present? %>
         <%= yield :auth_footer %>
