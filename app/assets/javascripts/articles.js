@@ -34,16 +34,20 @@ function setupOverlay() {
     }
   }
 
-  // Listen for the scroll event on the window
-  window.addEventListener('scroll', checkScrollPosition);
+  if (paywallOverlay) {
+    // Listen for the scroll event on the window
+    window.addEventListener('scroll', checkScrollPosition);
 
-  console.log("overlay init");
+    console.log("overlay init");
 
-  // Handle navigation away from the page
-  window.addEventListener('beforeunload', () => {
-    closeOverlay();
-    console.log("out");
-  });
+    // Handle navigation away from the page
+    window.addEventListener('beforeunload', () => {
+      closeOverlay();
+      console.log("out");
+    });
+  } else {
+    console.log("have access to article")
+  }
 };
 
 setupOverlay();

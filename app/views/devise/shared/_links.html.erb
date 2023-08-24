@@ -1,20 +1,30 @@
-<%- if controller_name != 'sessions' %>
-  <%= link_to "Log in", new_session_path(resource_name) %><br />
+<%- if controller_name != "sessions" && controller_name != "articles" %>
+  <div class="text-sm font-light text-gray-500 ">
+    Already have an account?
+    <%= link_to "Sign in", new_session_path(resource_name), class: "text-primary-600 hover:underline" %>
+  </div>
 <% end %>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <%= link_to "Sign up", new_registration_path(resource_name) %><br />
+  <div class="text-sm font-light text-gray-500 ">
+    Don’t have an account yet?
+    <%= link_to "Sign up", new_registration_path(resource_name), class: "text-primary-600 hover:underline" %>
+  </div>
 <% end %>
 
-<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+<%
+=begin%>
+ <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
   <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
 <% end %>
+<%
+=end%>
 
-<%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+<%- if devise_mapping.confirmable? && controller_name != "confirmations" %>
   <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %><br />
 <% end %>
 
-<%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
+<%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != "unlocks" %>
   <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name) %><br />
 <% end %>
 
@@ -24,39 +34,48 @@
   <% end %>
 <% end %>
 
+<% if (controller_name == "sessions" || controller_name == "registrations" || controller_name == "articles") %>
+  <div class="w-full flex items-center justify-between my-2 2xl:py-2">
+    <hr class="w-full bg-gray-400">
+    <div class="text-base font-medium leading-4 px-2 text-sm text-gray-500">or</div>
+    <hr class="w-full bg-gray-400">
+  </div>
 
+  <div class="text-xs font-light">
+    By continuing, you agree to the updated
+    <a href="/" class="underline" target="_blank" rel="noopener noreferrer">Terms of Sale</a>,
+    <a href="/" class="underline" target="_blank" rel="noopener noreferrer">Terms of Service</a>, and
+    <a href="/" class="underline" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.
+  </div>
 
-<button aria-label="Continue with PINET" role="button" class="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3 2xl:py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-3 justify-center">
-    <img src="https://flowbite.com/docs/images/logo.svg" width="19" height="20" alt="Flowbite Logo" />
-    <p class="text-base font-semibold ml-2 2xl:ml-4 text-gray-700 text-sm">Continue with PINET</p>
-</button>
+  <%= form_tag(user_openid_connect_omniauth_authorize_path(origin: @article ? article_url(@article) : nil), method: :post, data: { turbo: "false", pressingly_one_tap: "true" }, class: "w-full") do %>
+    <%= button_tag(type: "submit", class: "social-login-button focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3 2xl:py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-3 justify-center") do %>
+      <img src="https://flowbite.com/docs/images/logo.svg" width="19" height="20" alt="Flowbite Logo" />
+      <p class="text-base font-semibold ml-2 2xl:ml-4 text-gray-700 text-sm">Continue with PINET</p>
+    <% end %>
+  <% end %>
 
-<%= button_to(user_openid_connect_omniauth_authorize_path, class: "focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3 2xl:py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-3 justify-center", data: {turbo: "false", pressingly_one_tap: "true"}) do %>
-  <img src="https://flowbite.com/docs/images/logo.svg" width="19" height="20" alt="Flowbite Logo" />
-  <p class="text-base font-semibold ml-2 2xl:ml-4 text-gray-700 text-sm">Continue with PINET</p>
-<%end%>
+  <button aria-label="Continue with google" role="button" class="social-login-button focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3 2xl:py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-3 justify-center">
+      <svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18.9892 10.1871C18.9892 9.36767 18.9246 8.76973 18.7847 8.14966H9.68848V11.848H15.0277C14.9201 12.767 14.3388 14.1512 13.047 15.0812L13.0289 15.205L15.905 17.4969L16.1042 17.5173C17.9342 15.7789 18.9892 13.221 18.9892 10.1871Z" fill="#4285F4" />
+          <path d="M9.68813 19.9314C12.3039 19.9314 14.4999 19.0455 16.1039 17.5174L13.0467 15.0813C12.2286 15.6682 11.1306 16.0779 9.68813 16.0779C7.12612 16.0779 4.95165 14.3395 4.17651 11.9366L4.06289 11.9465L1.07231 14.3273L1.0332 14.4391C2.62638 17.6946 5.89889 19.9314 9.68813 19.9314Z" fill="#34A853" />
+          <path d="M4.17667 11.9366C3.97215 11.3165 3.85378 10.6521 3.85378 9.96562C3.85378 9.27905 3.97215 8.6147 4.16591 7.99463L4.1605 7.86257L1.13246 5.44363L1.03339 5.49211C0.37677 6.84302 0 8.36005 0 9.96562C0 11.5712 0.37677 13.0881 1.03339 14.4391L4.17667 11.9366Z" fill="#FBBC05" />
+          <path d="M9.68807 3.85336C11.5073 3.85336 12.7344 4.66168 13.4342 5.33718L16.1684 2.59107C14.4892 0.985496 12.3039 0 9.68807 0C5.89885 0 2.62637 2.23672 1.0332 5.49214L4.16573 7.99466C4.95162 5.59183 7.12608 3.85336 9.68807 3.85336Z" fill="#EB4335" />
+      </svg>
+      <p class="text-base font-semibold ml-2 2xl:ml-4 text-gray-700 text-sm">Continue with Google</p>
+  </button>
 
+  <button aria-label="Continue with facebook" role="button" class="social-login-button focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3 2xl:py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-3 justify-center">
+    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill="blue" class="bi bi-facebook" viewBox="0 0 16 16"> <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/> </svg>
 
-<button aria-label="Continue with google" role="button" class="focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3 2xl:py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-3 justify-center">
-    <svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M18.9892 10.1871C18.9892 9.36767 18.9246 8.76973 18.7847 8.14966H9.68848V11.848H15.0277C14.9201 12.767 14.3388 14.1512 13.047 15.0812L13.0289 15.205L15.905 17.4969L16.1042 17.5173C17.9342 15.7789 18.9892 13.221 18.9892 10.1871Z" fill="#4285F4" />
-        <path d="M9.68813 19.9314C12.3039 19.9314 14.4999 19.0455 16.1039 17.5174L13.0467 15.0813C12.2286 15.6682 11.1306 16.0779 9.68813 16.0779C7.12612 16.0779 4.95165 14.3395 4.17651 11.9366L4.06289 11.9465L1.07231 14.3273L1.0332 14.4391C2.62638 17.6946 5.89889 19.9314 9.68813 19.9314Z" fill="#34A853" />
-        <path d="M4.17667 11.9366C3.97215 11.3165 3.85378 10.6521 3.85378 9.96562C3.85378 9.27905 3.97215 8.6147 4.16591 7.99463L4.1605 7.86257L1.13246 5.44363L1.03339 5.49211C0.37677 6.84302 0 8.36005 0 9.96562C0 11.5712 0.37677 13.0881 1.03339 14.4391L4.17667 11.9366Z" fill="#FBBC05" />
-        <path d="M9.68807 3.85336C11.5073 3.85336 12.7344 4.66168 13.4342 5.33718L16.1684 2.59107C14.4892 0.985496 12.3039 0 9.68807 0C5.89885 0 2.62637 2.23672 1.0332 5.49214L4.16573 7.99466C4.95162 5.59183 7.12608 3.85336 9.68807 3.85336Z" fill="#EB4335" />
+    <p class="text-base font-semibold ml-2 2xl:ml-4 text-gray-700 text-sm">Continue with Facebook</p>
+  </button>
+
+  <button aria-label="Continue with apple" role="button" class="social-login-button focus:outline-none  focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3 2xl:py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-3 justify-center">
+    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-apple" viewBox="0 0 16 16">
+      <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282z"/> <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282z"/>
     </svg>
-    <p class="text-base font-semibold ml-2 2xl:ml-4 text-gray-700 text-sm">Continue with Google</p>
-</button>
 
-<button aria-label="Continue with facebook" role="button" class="focus:outline-none  focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3 2xl:py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-3 justify-center">
-  <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill="blue" class="bi bi-facebook" viewBox="0 0 16 16"> <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/> </svg>
-
-  <p class="text-base font-semibold ml-2 2xl:ml-4 text-gray-700 text-sm">Continue with Facebook</p>
-</button>
-
-<button aria-label="Continue with apple" role="button" class="focus:outline-none  focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3 2xl:py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-3 justify-center">
-  <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-apple" viewBox="0 0 16 16">
-    <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282z"/> <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282z"/>
-  </svg>
-
-  <p class="text-base font-semibold ml-2 2xl:ml-4 text-gray-700 text-sm">Continue with Apple</p>
-</button>
+    <p class="text-base font-semibold ml-2 2xl:ml-4 text-gray-700 text-sm">Continue with Apple</p>
+  </button>
+<% end %>

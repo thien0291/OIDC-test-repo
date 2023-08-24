@@ -1,6 +1,10 @@
 namespace :db do
   desc "Generate real articles data"
   task generate_real_articles: :environment do
+    # Clear existing data
+    Article.delete_all
+    ActsAsTaggableOn::Tagging.delete_all    
+    
     categories = [
       { name: 'Economy' },
       { name: 'Politics and Laws' },
@@ -134,7 +138,7 @@ namespace :db do
           currency: 'USD'
         )
 
-        article.tag_list.add(category[:name])
+        article.category_list.add(category[:name])
         article.save
       end
     end

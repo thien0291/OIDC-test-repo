@@ -15,6 +15,13 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
   end
 
+  def after_sign_in_path_for(resource)
+    # https://github.com/omniauth/omniauth/wiki/Saving-User-Location
+    request.env["omniauth.origin"] ||
+      stored_location_for(resource) ||
+      signed_in_root_path(resource)
+  end
+
   def failure
     redirect_to root_path
   end
