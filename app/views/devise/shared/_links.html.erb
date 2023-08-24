@@ -51,14 +51,6 @@
   <%= form_tag(user_openid_connect_omniauth_authorize_path, method: :post, data: { turbo: "false", pressingly_one_tap: "true" }, class: "w-full") do %>
     <% if controller_name == "articles" %>
       <% session[:return_to] = article_path(@article) %>
-
-      <%
-=begin%>
- <% if controller_name == "articles" %>
-        <%= hidden_field_tag :return_to, article_path(@article) %>
-      <% end %> 
-<%
-=end%>
     <% end %>
 
     <%= button_tag(type: "submit", class: "social-login-button focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3 2xl:py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-3 justify-center") do %>
