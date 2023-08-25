@@ -11,9 +11,9 @@
         <div>
           <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase">Categories</h2>
           <ul class="text-gray-500 font-medium">
-            <% all_categories.each do |category| %>
+            <% all_categories.each do |category_name| %>
               <li class="mb-4">
-                <a href="/categories/<%= category %>" class="hover:underline"><%= category %></a>
+                <a href="/categories/<%= category_name %>" class="hover:underline"><%= category_name.titleize %></a>
               </li>
             <% end %>
           </ul>

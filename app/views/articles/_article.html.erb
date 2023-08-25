@@ -23,7 +23,7 @@
     <div class="whitespace-pre-wrap leading-7">
       <%= article.content.to_plain_text %> 
     </div>
-    <%= render "paywall/subscriptions" %>
+    <%= render "paywall/subscriptions", article: article %>
   
   <% else%>
     <div class="whitespace-pre-wrap leading-7">

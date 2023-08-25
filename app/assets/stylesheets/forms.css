@@ -2,3 +2,11 @@
 button[type="submit"] {
   background-color: #2661f2;
 }
+
+button.social-login-button {
+  background-color: transparent;
+}
+
+button.social-login-button:hover {
+  background-color: rgba(66, 133, 244, 0.04);
+}

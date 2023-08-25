@@ -48,7 +48,7 @@
                 <span class="mr-2 text-5xl font-extrabold">$1</span>
                 <span class="text-gray-500">/day</span>
             </div>
-            <a href="/subscriptions" class="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Subscribe now</a>
+            <%= render partial: 'transactions/form', locals: { title: "Subscribe now", transaction: Transaction.new(user: current_user, related_object: AccessPass.create(valid_from: Time.now, valid_until: 25.hours.from_now), extra_info: {return_url: root_url}) }%>
         </div>
     </div>
     <!-- Pricing Card -->
