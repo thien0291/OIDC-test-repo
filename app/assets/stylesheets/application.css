@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+#sidebar-drawer {
+  right: 0;
+  left: auto !important;
+}

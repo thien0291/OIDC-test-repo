@@ -8,28 +8,7 @@
 
       <div class="flex items-center md:order-2">
         <% if user_signed_in? %>
-          <button type="button" class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
-            <span class="sr-only">Open user menu</span>
-            <img class="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-3.jpg" alt="user photo">
-          </button>
-
-          <!-- Dropdown menu -->
-          <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-200 rounded-lg drop-shadow-lg" id="user-dropdown">
-            <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownDividerButton">
-              <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Dashboard</a>
-              </li>
-              <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100">Settings</a>
-              </li>
-              <li>
-                <a href="/subscriptions" class="block px-4 py-2 hover:bg-gray-100">Subscriptions</a>
-              </li>
-            </ul>
-            <div class="py-2">
-              <%= link_to "Sign Out", destroy_user_session_path, method: :delete, data: { "turbo-method": :delete }, class:"block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
-            </div>
-          </div>
+          <%= render "layouts/sidebar" %>
         <% else %>
           <div class="flex items-center">
             <div class="py-2 w-24 mx-2 text-center text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200">
