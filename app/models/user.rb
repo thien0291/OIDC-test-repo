@@ -31,7 +31,7 @@ class User < ApplicationRecord
     articles.include?(article) || access_passes.active.any?
   end
 
-  scope :latest_completed_access_pass_package_name, -> (user_id) {
+  def self.latest_completed_access_pass_package_name(user_id)
     select("ap.package_name")
       .joins("JOIN transactions AS t ON users.id = t.user_id")
       .joins("JOIN access_passes AS ap ON t.related_object_id = ap.id")
@@ -40,5 +40,5 @@ class User < ApplicationRecord
       .limit(1)
       .pluck("ap.package_name")
       .first
-  }
+  end
 end
