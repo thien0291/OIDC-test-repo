@@ -12,7 +12,7 @@
 
   <div class="overflow-y-auto text-base list-none bg-white divide-y divide-gray-200">
     <div class="py-3 italic text-gray-700 font-medium">
-      Hello <%= current_user.email %>
+      Hello <%= current_user.email %>!
     </div>
 
     <div class="py-3">
@@ -29,7 +29,7 @@
           </li>
         <% else %>
           <li>
-            <div class="block px-2 py-2 italic">You don't have any subscription</div>
+            <div class="block px-2 py-2 italic">You don't have any subscription.</div>
           </li>
         <% end %>
 
