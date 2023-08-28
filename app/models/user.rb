@@ -30,4 +30,15 @@ class User < ApplicationRecord
   def can_access?(article)
     articles.include?(article) || access_passes.active.any?
   end
+
+  def self.latest_completed_access_pass_package_name(user_id)
+    select("ap.package_name")
+      .joins("JOIN transactions AS t ON users.id = t.user_id")
+      .joins("JOIN access_passes AS ap ON t.related_object_id = ap.id")
+      .where("t.status = 'completed' AND users.id = ?", user_id)
+      .order("t.created_at DESC")
+      .limit(1)
+      .pluck("ap.package_name")
+      .first
+  end
 end

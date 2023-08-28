@@ -10,4 +10,8 @@ class Transaction < ApplicationRecord
                  disputed: "disputed",
                  canceled: "canceled",
                  refunded: "refunded" }
+
+  scope :sum_amount_current_month, -> {
+    where("created_at >= ? AND created_at <= ? ", Time.current.beginning_of_month, Time.current.end_of_month).sum(:amount)
+  }
 end

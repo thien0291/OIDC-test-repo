@@ -1,0 +1,92 @@
+<button type="button" class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300" data-drawer-target="sidebar-drawer" data-drawer-show="sidebar-drawer" aria-controls="sidebar-drawer">
+  <span class="sr-only">Open user menu</span>
+  <img class="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-3.jpg" alt="user photo">
+</button>
+
+<!-- drawer component -->
+<div id="sidebar-drawer" class="fixed top-0 z-50 w-80 h-screen py-3 px-6 overflow-y-auto transition-transform translate-x-full bg-white drop-shadow-lg" tabindex="-1" aria-labelledby="sidebar-drawer-label">
+  <button type="button" data-drawer-hide="sidebar-drawer" aria-controls="sidebar-drawer" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-5 right-2.5 inline-flex items-center justify-center" >
+      <svg aria-hidden="false" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+      <span class="sr-only">Close menu</span>
+  </button>
+
+  <div class="overflow-y-auto text-base list-none bg-white divide-y divide-gray-200">
+    <div class="py-3 italic text-gray-700 font-medium">
+      Hello <%= current_user.email %>!
+    </div>
+
+    <div class="py-3">
+      <div class="px-2 pt-2 text-lg text-gray-700 font-bold uppercase"> 
+        Your subscription 
+      </div>  
+
+      <ul class="text-sm text-gray-700" aria-labelledby="dropdownDividerButton">
+        <% latest_package = User.latest_completed_access_pass_package_name(current_user.id) %>
+        <% if latest_package.present? %>
+          <li class="flex justify-between items-center">
+            <div class="block px-2 py-2"><%= latest_package.titleize %> Pass</div>
+            <a href="/subscriptions" class="italic text-primary-400 hover:text-primary-600">Change</a>
+          </li>
+        <% else %>
+          <li>
+            <div class="block px-2 py-2 italic">You don't have any active subscription.</div>
+          </li>
+        <% end %>
+
+        <li>
+          <a href="#" class="block px-2 py-2 hover:bg-gray-100">This month spending: $<%= Transaction.sum_amount_current_month %></a>
+        </li>
+
+        <% if @article.present? %>
+          <li>
+            <a href="/subscriptions" class="block px-2 py-2 hover:bg-gray-100">This article price: $0.05</a>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="py-3">
+      <div class="px-2 pt-2 text-lg text-gray-700 font-bold uppercase"> 
+        Your content 
+      </div>  
+
+      <ul class="text-sm text-gray-700" aria-labelledby="dropdownDividerButton">
+        <li>
+          <a href="#" class="block px-2 py-2 hover:bg-gray-100">Saved articles</a>
+        </li>
+        <li>
+          <a href="#" class="block px-2 py-2 hover:bg-gray-100">Newsletters</a>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <a href="/subscriptions" class="text-md font-medium text-gray-700 block px-2 py-3 hover:bg-gray-100">Subscription overview</a>
+    </div>
+    <div>
+      <a href="#" class="text-md font-medium text-gray-700 block px-2 py-3 hover:bg-gray-100">Transaction history</a>
+    </div>
+    <div>
+      <a href="#" class="text-md font-medium text-gray-700 block px-2 py-3 hover:bg-gray-100">Account settings</a>
+    </div>
+
+    <div class="py-3">
+      <div class="px-2 pt-2 text-lg text-gray-700 font-bold uppercase"> 
+        Get Support
+      </div>  
+
+      <ul class="text-sm text-gray-700" aria-labelledby="dropdownDividerButton">
+        <li>
+          <a href="#" class="block px-2 py-2 hover:bg-gray-100">Help Center</a>
+        </li>
+        <li>
+          <a href="#" class="block px-2 py-2 hover:bg-gray-100">Privacy Policy</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="py-3">
+      <%= link_to "Sign out", destroy_user_session_path, method: :delete, data: { "turbo-method": :delete }, class:"block w-full py-2 text-center text-md font-medium text-primary-500 hover:bg-primary-500 hover:text-white hover:cursor-pointer border-2 border-primary-500 rounded-lg" %>
+    </div>
+  </div>
+</div>
