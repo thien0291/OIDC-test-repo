@@ -10,7 +10,7 @@
       <div class="w-3/4 h-1 bg-primary-500 mx-auto mb-10"></div>
     </div>
 
-    <div class="flex gap-0.5">
+    <div class="flex gap-0.5" style="height: 526px;">
       <div class="w-3/5">
         <div class="relative h-full">
           <a href="<%= article_path(articles[0]) %>">
@@ -23,8 +23,8 @@
         </div>
       </div>
 
-      <div class="w-2/5 flex flex-col justify-between gap-0.5">
-        <div class="relative h-64">
+      <div class="w-2/5 flex flex-col justify-between">
+        <div class="relative" style="height: 262px;">
           <a href="<%= article_path(articles[1]) %>">
             <img src="<%= articles[1].thumbnail %>" class="w-full h-full object-cover" alt="Banner" />
           </a>
@@ -34,7 +34,7 @@
           </div>
         </div>
 
-        <div class="relative h-64">
+        <div class="relative" style="height: 262px;">
           <a href="<%= article_path(articles[2]) %>">
             <img src="<%= articles[2].thumbnail %>" class="w-full h-full object-cover" alt="Banner" />
           </a>

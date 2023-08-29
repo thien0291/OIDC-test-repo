@@ -1,15 +1,19 @@
 <%= javascript_include_tag 'articles', defer: true %>
 
-<div id="<%= dom_id article %>" class="basis-2/3 m-auto">
+<div id="<%= dom_id article %>" class="mx-auto w-2/3">
   <h1 class="text-4xl font-bold">
     <%= article.title %>
   </h1>
 
-  <p class="text-lg my-4 italic">
+  <p class="text-lg my-4 font-light italic">
     <%= article.summary %>
   </p>
 
-  <%= image_tag 'https://mdbcdn.b-cdn.net/img/new/standard/city/018.jpg', alt: 'Article Thumbnail', class: 'w-full' %>
+  <p class="text-sm my-4 font-light">
+    By <%= article.author %> | Published <%= format_date(article.created_at) %>
+  </p>
+
+  <%= image_tag article.thumbnail, alt: 'Article Thumbnail', class: 'w-full' %>
 
   <% if defined?(no_content) %>
   
