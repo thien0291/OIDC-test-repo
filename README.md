@@ -16,7 +16,7 @@ Things you may want to cover:
 - run `rails db:migrate` to generate required tables
 
 * Database initialization
-- run `rails db:generate_mock_articles` to generate mock articles data in database
+- run `rails db:generate_real_articles` to generate mock articles data in database
 
 * How to run the test suite
 

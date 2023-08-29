@@ -278,8 +278,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_29_024330) do
     t.index ["name"], name: "motor_tags_name_unique_index", unique: true
   end
 
-  create_table "taggings", force: :cascade do |t|
-    t.bigint "tag_id"
+  create_table "taggings", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "tag_id"
     t.string "taggable_type"
     t.uuid "taggable_id"
     t.string "tagger_type"
@@ -301,7 +301,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_29_024330) do
     t.index ["tenant"], name: "index_taggings_on_tenant"
   end
 
-  create_table "tags", force: :cascade do |t|
+  create_table "tags", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
