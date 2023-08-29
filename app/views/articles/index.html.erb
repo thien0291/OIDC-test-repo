@@ -4,7 +4,7 @@
       <section class="mb-16">
         <div class="relative mb-8">
           <a href="<%= article_path(@articles[0]) %>">
-            <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/018.jpg" class="w-full object-cover rounded" alt="Banner" />
+            <img src="<%= @articles[0].thumbnail %>" class="w-full object-cover rounded" alt="Banner" />
           </a>
           <a href="<%= article_path(@articles[0]) %>" class="absolute inset-0 bg-black/40 w-full h-fit flex flex-col text-start items-start p-4 mb-0 mt-auto px-10 text-slate-200 hover:text-slate-300">
             <h2 class="text-3xl font-semibold mb-2 hover:underline"><%= @articles[0].title %></h2>
