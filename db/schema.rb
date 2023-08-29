@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_17_031212) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_29_024330) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -32,17 +32,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_17_031212) do
     t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
   end
 
-  create_table "active_storage_attachments", force: :cascade do |t|
+  create_table "active_storage_attachments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.bigint "record_id", null: false
-    t.bigint "blob_id", null: false
+    t.uuid "record_id", null: false
+    t.uuid "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", force: :cascade do |t|
+  create_table "active_storage_blobs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
@@ -54,8 +54,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_17_031212) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "active_storage_variant_records", force: :cascade do |t|
-    t.bigint "blob_id", null: false
+  create_table "active_storage_variant_records", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
@@ -68,6 +68,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_17_031212) do
     t.string "currency", default: "USD"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "thumbnail", default: "https://mdbcdn.b-cdn.net/img/new/standard/city/018.jpg"
+    t.string "author", default: "Louis Theroux"
   end
 
   create_table "credit_tokens", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

@@ -1,7 +1,7 @@
 [data-tab-target][active] {
-  color: var(--color-primary-500);
+  color: #3d78f5;
   border-bottom-width: 2px;
-  border-color: var(--color-primary-500);
+  border-color: #3d78f5;
   border-top-left-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
   padding: 1rem 2rem;
@@ -10,6 +10,6 @@
 }
 
 [data-tab-target][active]:hover {
-  color: var(--color-primary-600);
-  border-color: var(--color-primary-600);
+  color: #2661f2;
+  border-color: #2661f2;
 }
