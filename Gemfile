@@ -95,3 +95,4 @@ gem 'faker'
 
 # Pagination library [https://github.com/mislav/will_paginate]
 gem 'will_paginate'
+gem "newrelic_rpm", "~> 9.4"
