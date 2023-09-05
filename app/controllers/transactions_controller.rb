@@ -28,8 +28,11 @@ class TransactionsController < ApplicationController
     @transaction.amount = @transaction.related_object.price
     @transaction.currency = "USD"
     @transaction.extra_info = JSON.parse(transaction_params[:extra_info] || "{}")
-
+    
     if @transaction.save
+      current_user.current_subscription = 
+        (@transaction.related_object_type == 'AccessPass') ? @transaction.related_object.package_name : 'Pay Per Article'
+      current_user.save
       # direct_charge
       charge_with_credit_token
     else
@@ -109,7 +112,7 @@ class TransactionsController < ApplicationController
     Transaction::Process.call(credit_token, @transaction)
 
     if @transaction.status == "completed"
-      return redirect_to @transaction.extra_info["return_url"], alert: "Transaction completed"
+      return redirect_to @transaction.extra_info["return_url"], notice: "Transaction completed"
     end
   end
 

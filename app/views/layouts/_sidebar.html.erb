@@ -21,7 +21,7 @@
       </div>  
 
       <ul class="text-sm text-gray-700" aria-labelledby="dropdownDividerButton">
-        <% latest_package = User.latest_completed_access_pass_package_name(current_user.id) %>
+        <% latest_package = current_user.current_subscription %>
         <% if latest_package.present? %>
           <li class="flex justify-between items-center">
             <div class="block px-2 py-2"><%= latest_package.titleize %> Pass</div>
