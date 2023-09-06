@@ -16,15 +16,31 @@
     </div>
 
     <div class="py-3">
-      <div class="px-2 pt-2 text-lg text-gray-700 font-bold uppercase"> 
-        Your subscription 
-      </div>  
+      <div class="flex justify-between items-center">
+        <div class="px-2 pt-2 text-lg text-gray-700 font-bold uppercase"> 
+          Your subscription 
+        </div>  
+      </div>
 
       <ul class="text-sm text-gray-700" aria-labelledby="dropdownDividerButton">
         <% latest_package = current_user.current_subscription %>
         <% if latest_package.present? %>
           <li class="flex justify-between items-center">
-            <div class="block px-2 py-2"><%= latest_package.titleize %> Pass</div>
+            <div class="flex">
+              <div class="block px-2 py-2"><%= latest_package.titleize %> Pass</div>
+              <% latest_completed_transaction = current_user.latest_completed_transaction %>
+              <% if latest_completed_transaction&.related_object_type == "AccessPass" %>
+                <% time_remaining = (latest_completed_transaction.related_object.valid_until - Time.now).to_i %>
+                <% status = time_remaining > 0 ? 'active' : 'expired' %>
+
+                <div class="flex items-center self-center text-white text-xs rounded-md py-1 px-2 <%= status == 'active' ? 'bg-primary-600' : 'bg-red-600' %>">
+                  <svg class="w-4 h-3 mr-1" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
+                  </svg>
+                  <%= status == "active" ? "#{time_remaining / 3600}h:#{(time_remaining % 3600) / 60}m left" : "Expired" %>
+                </div>
+              <% end %>
+            </div>
             <a href="/subscriptions" class="italic text-primary-400 hover:text-primary-600">Change</a>
           </li>
         <% else %>
@@ -39,7 +55,7 @@
 
         <% if @article.present? %>
           <li>
-            <a href="/subscriptions" class="block px-2 py-2 hover:bg-gray-100">This article price: $0.05</a>
+            <a href="/subscriptions" class="block px-2 py-2 hover:bg-gray-100">This article price: $<%= @article.price %></a>
           </li>
         <% end %>
       </ul>
