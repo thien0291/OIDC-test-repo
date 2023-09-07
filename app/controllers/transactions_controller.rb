@@ -22,23 +22,15 @@ class TransactionsController < ApplicationController
 
   # POST /transactions or /transactions.json
   def create
-    @transaction = current_user.transactions.new(transaction_params)
+    transaction_service = Transaction::TransactionService.new(current_user)
+    Rails.logger.info("Transaction Params: #{transaction_params.inspect}")
+    @transaction = transaction_service.create_transaction(transaction_params)
 
-    @transaction.status = "pending"
-    @transaction.amount = @transaction.related_object.price
-    @transaction.currency = "USD"
-    @transaction.extra_info = JSON.parse(transaction_params[:extra_info] || "{}")
-    
-    if @transaction.save
-      current_user.current_subscription = 
-        (@transaction.related_object_type == 'AccessPass') ? @transaction.related_object.package_name : 'Pay Per Article'
-      current_user.save
-      # direct_charge
-      charge_with_credit_token
+    if @transaction
+      transaction_service.charge(@transaction)
     else
       redirect_to :back
     end
-
     # respond_to do |format|
     #   if @transaction.save
     #     format.html { redirect_to transaction_url(@transaction), notice: "Transaction was successfully created." }
@@ -97,41 +89,5 @@ class TransactionsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def transaction_params
     params.require(:transaction).permit(:user_id, :related_object_type, :related_object_id, :extra_info)
-  end
-
-  # Charge through a credit token
-  def charge_with_credit_token
-    credit_token = current_user.credit_tokens.active.first
-
-    unless credit_token
-      request.params[:transaction_id] = @transaction.id
-      res = CreditTokensController.dispatch(:create, request, response)
-      return res
-    end
-
-    Transaction::Process.call(credit_token, @transaction)
-
-    if @transaction.status == "completed"
-      return redirect_to @transaction.extra_info["return_url"], notice: "Transaction completed"
-    end
-  end
-
-  # charge directly over confirmation page
-  def direct_charge
-    redirect_post(ENV["PRESSINGLY_CHARGE_URL"],
-                  params: {
-                    "order_items": [
-                      {
-                        "uid": @transaction.article.to_global_id,
-                        "name": @transaction.article.title,
-                        "quantity": 1,
-                        "price": @transaction.article.price,
-                        "currency": "USD",
-                      },
-                    ],
-                    "organization_id": "3c6c4cbe-d2ac-4aad-927e-0eab96f74262",
-                    "return_url": confirm_transaction_url(@transaction, provider: "pressingly"),
-                    "cancel_url": callback_credit_token_url(credit_token, transaction_id: transaction_id),
-                  })
   end
 end
