@@ -30,9 +30,7 @@ class TransactionsController < ApplicationController
     @transaction.extra_info = JSON.parse(transaction_params[:extra_info] || "{}")
 
     if @transaction.save
-      current_user.current_subscription =
-        (@transaction.related_object_type == "AccessPass") ? @transaction.related_object.package_name : "Pay Per Article"
-      current_user.save
+      update_current_user_subscription
       # direct_charge
       return charge_with_credit_token
     else
@@ -87,6 +85,12 @@ class TransactionsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def transaction_params
     params.require(:transaction).permit(:user_id, :related_object_type, :related_object_id, :extra_info)
+  end
+
+  def update_current_user_subscription
+    current_user.current_subscription =
+        (@transaction.related_object_type == "AccessPass") ? @transaction.related_object.package_name : "Pay Per Article"
+    current_user.save
   end
 
   # Charge through a credit token
