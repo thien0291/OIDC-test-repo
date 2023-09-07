@@ -8,6 +8,29 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1 or /articles/1.json
   def show
+    # return redirect_to "https://pressingly-account.onrender.com/credit_tokens/issue?encrypted_params=eyJvcmdhbml6YXRpb25faWQiOiJjM2YyMGY4MS05MmE4LTQ5NTEtYmM3MC1jNTYzMTVhM2M3NjciLCJyZXR1cm5fdXJsIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6MzAwNS9jcmVkaXRfdG9rZW5zL2MwZTA1NTBkLWI3MmUtNGE5OC1iODQ5LTg5YTNlZjI2YjBlOC9jYWxsYmFjaz90cmFuc2FjdGlvbl9pZD01Y2RjYWVmZC0zZThkLTQzOTgtODAwNi1hMzc5ZTQ3M2M2MWIiLCJjYW5jZWxfdXJsIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6MzAwNS9jcmVkaXRfdG9rZW5zL2MwZTA1NTBkLWI3MmUtNGE5OC1iODQ5LTg5YTNlZjI2YjBlOC9jYWxsYmFjaz90cmFuc2FjdGlvbl9pZD01Y2RjYWVmZC0zZThkLTQzOTgtODAwNi1hMzc5ZTQ3M2M2MWIifQ==&organization_id=c3f20f81-92a8-4951-bc70-c56315a3c767",
+    #                    allow_other_host: true,
+    #                    turbolinks: false
+
+    if current_user && (not current_user.can_access?(@article))
+      transaction_params = {
+        user_id: current_user.id,
+        related_object_type: "Article",
+        related_object_id: @article.id,
+        extra_info: {
+          return_url: article_url(@article),
+        }.to_json,
+      }
+
+      request.params[:transaction] = transaction_params
+      res = TransactionsController.dispatch(:create, request, response)
+
+      return res
+      # return res.last
+      # return redirect_to "https://pressingly-account.onrender.com/credit_tokens/issue?encrypted_params=eyJvcmdhbml6YXRpb25faWQiOiJjM2YyMGY4MS05MmE4LTQ5NTEtYmM3MC1jNTYzMTVhM2M3NjciLCJyZXR1cm5fdXJsIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6MzAwNS9jcmVkaXRfdG9rZW5zL2MwZTA1NTBkLWI3MmUtNGE5OC1iODQ5LTg5YTNlZjI2YjBlOC9jYWxsYmFjaz90cmFuc2FjdGlvbl9pZD01Y2RjYWVmZC0zZThkLTQzOTgtODAwNi1hMzc5ZTQ3M2M2MWIiLCJjYW5jZWxfdXJsIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6MzAwNS9jcmVkaXRfdG9rZW5zL2MwZTA1NTBkLWI3MmUtNGE5OC1iODQ5LTg5YTNlZjI2YjBlOC9jYWxsYmFjaz90cmFuc2FjdGlvbl9pZD01Y2RjYWVmZC0zZThkLTQzOTgtODAwNi1hMzc5ZTQ3M2M2MWIifQ==&organization_id=c3f20f81-92a8-4951-bc70-c56315a3c767", allow_other_host: true, turbolinks: false
+    end
+
+    render json: { success: :ok }
   end
 
   # GET /articles/new
@@ -58,13 +81,14 @@ class ArticlesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_article
-      @article = Article.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def article_params
-      params.require(:article).permit(:title, :summary, :content, :price, :currency, :tag_list)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_article
+    @article = Article.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def article_params
+    params.require(:article).permit(:title, :summary, :content, :price, :currency, :tag_list)
+  end
 end

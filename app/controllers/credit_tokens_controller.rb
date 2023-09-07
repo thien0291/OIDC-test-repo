@@ -49,7 +49,7 @@ class CreditTokensController < ApplicationController
     secret_params = Base64.encode64(raw_secret_params)
 
     redirect_url = ENV["CREDIT_TOKEN_URL"] + "?encrypted_params=#{secret_params}&organization_id=#{ENV["PRESSINGLY_ORGANIZATION_ID"]}"
-    redirect_to redirect_url, allow_other_host: true
+    redirect_to redirect_url, allow_other_host: true, turbolinks: false
   end
 
   def callback
