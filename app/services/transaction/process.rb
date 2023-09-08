@@ -27,7 +27,7 @@ class Transaction::Process
 
   # make an API call to pressingly to charge user.
   def charge_money_from_credit_token
-    ref_transaction = CreditToken::Charge.call(@credit_token, @transaction.amount, @transaction.currency)
+    ref_transaction = CreditToken::Charge.call(@credit_token, @transaction.amount, @transaction.currency, description)
     @transaction.extra_info ||= {}
     @transaction.extra_info[:ref_transaction] = ref_transaction
     @transaction.ref_transaction_id = ref_transaction["id"]
@@ -42,5 +42,13 @@ class Transaction::Process
   def set_status_to_completed
     @transaction.status = "completed"
     @transaction.save
+  end
+
+  def description
+    if @transaction.related_object_type == "AccessPass"
+      "You've purchased \"#{transaction.related_object.package_name}\" package"
+    else
+      "You've purchased \"Pay Per Article\" package"
+    end
   end
 end
