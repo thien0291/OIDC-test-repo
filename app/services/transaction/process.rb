@@ -46,9 +46,14 @@ class Transaction::Process
 
   def description
     if @transaction.related_object_type == "AccessPass"
-      "You've purchased \"#{transaction.related_object.package_name}\" package"
-    else
-      "You've purchased \"Pay Per Article\" package"
+      return  "You've purchased \"#{transaction.related_object.package_name}\" package"
     end
+
+    second_last_transaction = @transaction.user.second_last_transaction
+    if second_last_transaction && second_last_transaction.related_object_type == "AccessPass"
+      return "You've purchased \"Pay Per Article\" package"
+    end
+    
+    "You've purchased a new article"
   end
 end

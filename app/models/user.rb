@@ -8,7 +8,7 @@ class User < ApplicationRecord
 
   has_many :transactions
   has_many :completed_transactions, -> { where(status: "completed") }, class_name: "Transaction"
-  has_one :latest_completed_transaction, -> { where(status: "completed").order(created_at: :desc).limit(1)}, class_name: "Transaction"
+  has_one :latest_completed_transaction, -> { where(status: "completed").order(created_at: :desc).limit(1) }, class_name: "Transaction"
   has_many :articles, through: :completed_transactions, source: :related_object, source_type: "Article"
   has_many :access_passes, through: :completed_transactions, source: :related_object, source_type: "AccessPass"
   has_many :credit_tokens
@@ -30,5 +30,9 @@ class User < ApplicationRecord
 
   def can_access?(article)
     articles.include?(article) || access_passes.active.any?
+  end
+
+  def second_last_transaction
+    completed_transactions.order(created_at: :desc).offset(1).first
   end
 end
