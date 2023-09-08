@@ -8,7 +8,7 @@ class User < ApplicationRecord
 
   has_many :transactions
   has_many :completed_transactions, -> { where(status: "completed") }, class_name: "Transaction"
-  has_one :latest_completed_transaction, -> { where(status: "completed").order(created_at: :desc).limit(1)}, class_name: "Transaction"
+  has_one :latest_completed_transaction, -> { where(status: "completed").order(created_at: :desc).limit(1) }, class_name: "Transaction"
   has_many :articles, through: :completed_transactions, source: :related_object, source_type: "Article"
   has_many :access_passes, through: :completed_transactions, source: :related_object, source_type: "AccessPass"
   has_many :credit_tokens
