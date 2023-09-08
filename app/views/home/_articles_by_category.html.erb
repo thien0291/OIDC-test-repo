@@ -16,7 +16,7 @@
               <div class="w-2/5">
                 <div class="relative mb-2 overflow-hidden rounded bg-cover bg-no-repeat shadow-lg mx-4 aspect-w-5 aspect-h-3">
                   <img src="<%= article.thumbnail %>" class="w-full" alt="Louvre" />
-                  <a href="<%= article_path(article) %>">
+                  <a href="<%= article_path(article) %>" data-turbo="false">
                     <div class="absolute top-0 right-0 bottom-0 left-0 h-full w-full overflow-hidden bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-100 bg-[hsla(0,0%,98.4%,.15)]">
                     </div>
                   </a>
@@ -27,7 +27,7 @@
                 <div class="space-y-6">
                   <div>
                     <h2 class="text-2xl font-bold leading-8 tracking-tight">
-                      <a href=<%= article_path(article) %> class="text-gray-900 hover:text-gray-700 hover:underline">
+                      <a href=<%= article_path(article) %> class="text-gray-900 hover:text-gray-700 hover:underline" data-turbo="false">
                         <%= article.title.truncate_words(8) %>
                       </a>
                     </h2>
@@ -43,7 +43,7 @@
                 </div>
 
                 <div class="text-base font-medium leading-6">
-                  <a href=<%= article_path(article) %> class="text-primary-500 hover:text-primary-600">
+                  <a href=<%= article_path(article) %> class="text-primary-500 hover:text-primary-600" data-turbo="false">
                     Read more &rarr;
                   </a>
                 </div>
@@ -56,7 +56,7 @@
             <div class="w-full">
                 <div class="ml-4">
                   <h2 class="text-xl font-semibold leading-8 tracking-tight">
-                    <a href=<%= article_path(article) %> class="text-gray-900 hover:text-gray-700 hover:underline">
+                    <a href=<%= article_path(article) %> class="text-gray-900 hover:text-gray-700 hover:underline" data-turbo="false">
                       <%= article.title %>
                     </a>
                   </h2>
