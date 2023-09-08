@@ -13,11 +13,11 @@
     <div class="flex gap-0.5" style="height: 526px;">
       <div class="w-3/5">
         <div class="relative h-full">
-          <a href="<%= article_path(articles[0]) %>">
+          <a href="<%= article_path(articles[0]) %>" data-turbo="false">
             <img src="<%= articles[0].thumbnail %>" class="w-full h-full object-cover" alt="Banner" />
           </a>
           <div class="absolute inset-0 bg-black/75 w-3/4 h-fit flex flex-col text-center items-center p-4 m-auto text-slate-200">
-            <a href="<%= article_path(articles[0]) %>" class="text-3xl font-semibold mb-2 hover:text-slate-300 hover:cursor-pointer hover:underline"><%= articles[0].title %></a>
+            <a href="<%= article_path(articles[0]) %>" class="text-3xl font-semibold mb-2 hover:text-slate-300 hover:cursor-pointer hover:underline" data-turbo="false"><%= articles[0].title %></a>
             <p class="text-center text-normal">By <%= articles[0].author.titleize %></p>
           </div>
         </div>
@@ -25,21 +25,21 @@
 
       <div class="w-2/5 flex flex-col justify-between">
         <div class="relative" style="height: 262px;">
-          <a href="<%= article_path(articles[1]) %>">
+          <a href="<%= article_path(articles[1]) %>" data-turbo="false">
             <img src="<%= articles[1].thumbnail %>" class="w-full h-full object-cover" alt="Banner" />
           </a>
           <div class="absolute inset-0 bg-black/75 w-3/4 h-fit flex flex-col text-center items-center p-4 m-auto text-slate-200">
-            <a href="<%= article_path(articles[1]) %>" class="font-semibold mb-2 text-lg hover:text-slate-300 hover:cursor-pointer hover:underline"><%= articles[1].title %></a>
+            <a href="<%= article_path(articles[1]) %>" class="font-semibold mb-2 text-lg hover:text-slate-300 hover:cursor-pointer hover:underline" data-turbo="false"><%= articles[1].title %></a>
             <p class="text-center text-normal">By <%= articles[1].author.titleize %></p>
           </div>
         </div>
 
         <div class="relative" style="height: 262px;">
-          <a href="<%= article_path(articles[2]) %>">
+          <a href="<%= article_path(articles[2]) %>" data-turbo="false">
             <img src="<%= articles[2].thumbnail %>" class="w-full h-full object-cover" alt="Banner" />
           </a>
           <div class="absolute inset-0 bg-black/75 w-3/4 h-fit flex flex-col text-center items-center p-4 m-auto text-slate-200">
-            <a href="<%= article_path(articles[2]) %>" class="font-semibold mb-2 text-lg hover:text-slate-300 hover:cursor-pointer hover:underline"><%= articles[2].title %></a>
+            <a href="<%= article_path(articles[2]) %>" class="font-semibold mb-2 text-lg hover:text-slate-300 hover:cursor-pointer hover:underline" data-turbo="false"><%= articles[2].title %></a>
             <p class="text-center text-normal">By <%= articles[2].author.titleize %></p>
           </div>
         </div>

@@ -8,6 +8,21 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1 or /articles/1.json
   def show
+    if current_user&.current_subscription == "Pay Per Article" && !current_user&.can_access?(@article)
+      transaction_params = {
+        user_id: current_user.id,
+        related_object_type: "Article",
+        related_object_id: @article.id,
+        extra_info: {
+          return_url: article_url(@article),
+        }.to_json,
+      }
+
+      request.params[:transaction] = transaction_params
+      res = TransactionsController.dispatch(:create, request, response)
+
+      return res
+    end
   end
 
   # GET /articles/new
@@ -58,13 +73,14 @@ class ArticlesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_article
-      @article = Article.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def article_params
-      params.require(:article).permit(:title, :summary, :content, :price, :currency, :tag_list)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_article
+    @article = Article.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def article_params
+    params.require(:article).permit(:title, :summary, :content, :price, :currency, :tag_list)
+  end
 end
