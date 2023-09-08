@@ -8,7 +8,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1 or /articles/1.json
   def show
-    if current_user && (not current_user.can_access?(@article))
+    if current_user && (current_user.current_subscription == "Pay Per Article")
       transaction_params = {
         user_id: current_user.id,
         related_object_type: "Article",
