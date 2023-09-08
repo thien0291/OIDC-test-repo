@@ -2,11 +2,29 @@ function setupOverlay() {
   const paywallOverlay = document.getElementById('paywall-overlay');
   const body = document.body;
 
+  // better solution to solve scrolling stops when mouse moves
   function scrollToTop() {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+    const duration = 0;
+    const startPosition = window.scrollY;
+    const startTime = performance.now();
+  
+    function animateScroll(timestamp) {
+      const timeElapsed = timestamp - startTime;
+      window.scrollTo({
+        top: easeInOutQuad(timeElapsed, startPosition, -startPosition, duration),
+        behavior: 'smooth'
+      });
+      if (timeElapsed < duration) requestAnimationFrame(animateScroll);
+    }
+  
+    requestAnimationFrame(animateScroll);
+  }
+  
+  function easeInOutQuad(t, b, c, d) {
+    t /= d / 2;
+    if (t < 1) return (c / 2) * t * t + b;
+    t--;
+    return (-c / 2) * (t * (t - 2) - 1) + b;
   }
 
   function showOverlay() {
