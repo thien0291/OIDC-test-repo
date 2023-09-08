@@ -31,8 +31,4 @@ class User < ApplicationRecord
   def can_access?(article)
     articles.include?(article) || access_passes.active.any?
   end
-
-  def second_last_transaction
-    completed_transactions.order(created_at: :desc).offset(1).first
-  end
 end
