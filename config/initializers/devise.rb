@@ -284,17 +284,17 @@ Devise.setup do |config|
     client_options: {
       port: 443,
       scheme: "https",
-      host: ENV["PRESSINGLY_OIDC_HOST"] || "pressingly-account.onrender.com",
+      host: ENV["PRESSINGLY_OIDC_HOST"] || "pressingly.onrender.com",
       identifier: ENV["PRESSINGLY_IDENTIFIER"],
       secret: ENV["PRESSINGLY_SECRET"],
       redirect_uri: ENV["PRESSINGLY_REDIRECT_URL"],
       # https://github.com/omniauth/omniauth-oauth2/issues/58
       # https://stackoverflow.com/questions/42240872/csrf-detection-fix-provider-ignores-state-true-not-saving-session-after-success
       # provider_ignores_state: true,
-      authorization_endpoint: ENV["PRESSINGLY_AUTH_ENDPOINT"] || "https://pressingly-account.onrender.com/oauth/authorize",
-      token_endpoint: ENV["PRESSINGLY_TOKEN_ENDPOINT"] || "https://pressingly-account.onrender.com/oauth/token",
-      userinfo_endpoint: ENV["PRESSINGLY_USER_ENDPOINT"] || "https://pressingly-account.onrender.com/oauth/userinfo",
-      jwks_uri: ENV["PRESSINGLY_JWKS_ENDPOINT"] || "https://pressingly-account.onrender.com/oauth/discovery/keys",
+      authorization_endpoint: ENV["PRESSINGLY_AUTH_ENDPOINT"] || "https://pressingly.onrender.com/oauth/authorize",
+      token_endpoint: ENV["PRESSINGLY_TOKEN_ENDPOINT"] || "https://pressingly.onrender.com/oauth/token",
+      userinfo_endpoint: ENV["PRESSINGLY_USER_ENDPOINT"] || "https://pressingly.onrender.com/oauth/userinfo",
+      jwks_uri: ENV["PRESSINGLY_JWKS_ENDPOINT"] || "https://pressingly.onrender.com/oauth/discovery/keys",
     },
   }
   # ==> Warden configuration
