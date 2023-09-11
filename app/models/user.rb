@@ -31,4 +31,9 @@ class User < ApplicationRecord
   def can_access?(article)
     articles.include?(article) || access_passes.active.any?
   end
+
+  # TODO remove this method
+  def mark_all_access_passes_as_expired
+    access_passes.active.update_all(valid_until: Time.now)
+  end
 end
