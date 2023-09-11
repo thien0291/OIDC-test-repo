@@ -46,9 +46,9 @@ class Transaction::Process
 
   def description
     if @transaction.related_object_type == "AccessPass"
-      return  "You've purchased \"#{transaction.related_object.package_name}\" package"
+      return  "You've purchased \"#{@transaction.related_object.package_name}\" package"
     end
 
-    "You've purchased a new article: #{transaction.related_object.title}"
+    "You've purchased a new article: #{@transaction.related_object.title}"
   end
 end
