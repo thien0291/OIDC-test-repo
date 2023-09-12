@@ -22,7 +22,7 @@
                 <span class="mr-2 text-5xl font-extrabold">$0.25</span>
                 <span class="text-gray-500">/sports article</span>
             </div>
-            <%= render partial: 'transactions/form', locals: { title: "Buy now", transaction: Transaction.new(user: current_user, related_object: article, extra_info: {return_url: article_url(article)}) }%>
+            <%= render partial: 'transactions/form', locals: { title: "Subscribe now", transaction: Transaction.new(user: current_user, related_object: article, extra_info: {return_url: article_url(article)}) }%>
         </div>
         <!-- Pricing Card -->
         <div class="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow xl:p-8 h-fit">
