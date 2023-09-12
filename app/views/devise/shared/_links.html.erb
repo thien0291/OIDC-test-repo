@@ -41,13 +41,6 @@
     <hr class="w-full bg-gray-400">
   </div>
 
-  <div class="text-xs font-light">
-    By continuing, you agree to the updated
-    <a href="/" class="underline" target="_blank" rel="noopener noreferrer">Terms of Sale</a>,
-    <a href="/" class="underline" target="_blank" rel="noopener noreferrer">Terms of Service</a>, and
-    <a href="/" class="underline" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.
-  </div>
-
   <%= form_tag(user_openid_connect_omniauth_authorize_path(origin: @article ? article_url(@article) : nil), method: :post, data: { turbo: "false", pressingly_one_tap: "true" }, class: "w-full") do %>
     <%= button_tag(type: "submit", class: "social-login-button focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3 2xl:py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-3 justify-center") do %>
       <img src="https://flowbite.com/docs/images/logo.svg" width="19" height="20" alt="Flowbite Logo" />
@@ -78,4 +71,11 @@
 
     <p class="text-base font-semibold ml-2 2xl:ml-4 text-gray-700 text-sm">Continue with Apple</p>
   </button>
+
+  <div class="text-xs font-light mt-3">
+    By continuing, you agree to the updated
+    <a href="/" class="underline" target="_blank" rel="noopener noreferrer">Terms of Sale</a>,
+    <a href="/" class="underline" target="_blank" rel="noopener noreferrer">Terms of Service</a>, and
+    <a href="/" class="underline" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.
+  </div>
 <% end %>
