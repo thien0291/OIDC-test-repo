@@ -18,20 +18,20 @@
   <% if defined?(no_content) %>
   
   <% elsif !user_signed_in? %>
-    <div class="whitespace-pre-wrap leading-7">
-      <%= article.content.to_plain_text %> 
+    <div class="article mt-4 leading-7">
+      <%= article.content.body %> 
     </div>
     <%= render "paywall/signin" %>
   
   <% elsif !current_user.can_access?(article) %>
-    <div class="whitespace-pre-wrap leading-7">
-      <%= article.content.to_plain_text %> 
+    <div class="article mt-4 leading-7">
+      <%= article.content.body %> 
     </div>
     <%= render "paywall/subscriptions", article: article %>
   
   <% else%>
-    <div class="whitespace-pre-wrap leading-7">
-      <%= article.content.to_plain_text %> 
+    <div class="article mt-4 leading-7">
+      <%= article.content.body %> 
     </div>
   <% end %>         
 

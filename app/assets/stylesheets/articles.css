@@ -27,3 +27,21 @@
   /* transition slower effect - does not work */
   /* transition: all 3s ease-in-out; */ 
 }
+
+/* Add default link styles */
+div.article a {
+  color: #3d78f5;
+  text-decoration: none;
+}
+
+div.article a:hover {
+  color: #2661f2;
+}
+
+div.article a:active {
+  color: #1a45e4;
+}
+
+div.article a strong {
+ font-weight: 500;
+}
